@@ -4,7 +4,8 @@
 vivace/node_modules/
 backend/node_modules/
 vivace/.expo/
-
+vivace/.env
+backend/.env
 
 # Expo
 .expo/
