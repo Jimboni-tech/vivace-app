@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "vivace",
+    "slug": "vivace",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vivaceapp.vivace",
+      "googleSignIn": {
+        "reservedClientId": "com.googleusercontent.apps.570016593022-5at03rqehieormc3ipm9vkadb4nnd08j" 
+      },
+      "usesAppleSignIn": true 
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.vivaceapp.vivace"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
