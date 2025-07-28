@@ -14,9 +14,11 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BACKGROUND_COLOR = '#E0F7FA';
+// Ensure this is correctly configured via react-native-dotenv or hardcoded for testing
 const BACKEND_URL = process.env.EXPO_PUBLIC_API_URL + '/api';
 
-export default function EmailRegisterScreen({ navigation }) {
+// Accept onLoginSuccess as a prop
+export default function EmailRegisterScreen({ navigation, onLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -25,7 +27,7 @@ export default function EmailRegisterScreen({ navigation }) {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!username.trim()) {
       newErrors.username = 'Username is required';
     } else if (username.length < 3) {
@@ -62,8 +64,27 @@ export default function EmailRegisterScreen({ navigation }) {
       const data = await res.json();
 
       if (res.ok) {
-        Alert.alert('Success', 'Registration successful! Please login.');
-        navigation.navigate('Login');
+        // Check if the token is present in the response from the backend
+        if (data.token) {
+          // Store the token
+          await AsyncStorage.setItem('userToken', data.token);
+
+          // Call the onLoginSuccess function passed from App.js
+          // This will update the main app's state and navigate to the AppStackNavigator
+          if (typeof onLoginSuccess === 'function') {
+            onLoginSuccess(data.token);
+            Alert.alert('Success', 'Registration successful! Welcome!');
+          } else {
+            // Fallback if onLoginSuccess is not provided (should not happen with correct setup)
+            console.warn('onLoginSuccess function not provided to EmailRegisterScreen.');
+            Alert.alert('Success', 'Registration successful! Please login.');
+            navigation.navigate('Login');
+          }
+        } else {
+          // This case should ideally not happen if the backend always returns a token
+          Alert.alert('Success', data.message || 'Registration successful! Please login.');
+          navigation.navigate('Login');
+        }
       } else {
         Alert.alert('Error', data.message || 'Registration failed.');
       }

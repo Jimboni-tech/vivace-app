@@ -23,9 +23,11 @@ const AuthStackNavigator = ({ onLoginSuccess }) => {
       </AuthStack.Screen>
       <AuthStack.Screen
         name="EmailRegister"
-        component={EmailRegisterScreen}
         options={{ title: 'Sign Up with Email' }}
-      />
+      >
+        {/* Pass the onLoginSuccess prop to EmailRegisterScreen */}
+        {(props) => <EmailRegisterScreen {...props} onLoginSuccess={onLoginSuccess} />}
+      </AuthStack.Screen>
     </AuthStack.Navigator>
   );
 };
