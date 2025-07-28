@@ -3,10 +3,11 @@ import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// FIX: Change the import statement for jwt-decode
-import { jwtDecode } from 'jwt-decode'; // <--- CHANGE THIS LINE
+import { jwtDecode } from 'jwt-decode'; // Correct import for jwt-decode
+
 import AuthStackNavigator from './navigation/AuthStackNavigator';
-import AppStackNavigator from './navigation/AppStackNavigator';
+// Change this import to your new MainTabsNavigator
+import BottomBar from './components/BottomBar.jsx'; // <--- CHANGE THIS LINE
 
 export default function App() {
   const [userToken, setUserToken] = React.useState(null);
@@ -18,7 +19,6 @@ export default function App() {
         const token = await AsyncStorage.getItem('userToken');
         if (token) {
           try {
-            // Now jwtDecode directly refers to the function
             const decoded = jwtDecode(token);
             const currentTime = Date.now() / 1000; // Current time in seconds
             if (decoded.exp && decoded.exp > currentTime) {
@@ -29,7 +29,6 @@ export default function App() {
               setUserToken(null);
             }
           } catch (e) {
-            // Log the actual error object for better debugging
             console.error('Failed to decode token:', e);
             await AsyncStorage.removeItem('userToken');
             setUserToken(null);
@@ -79,7 +78,8 @@ export default function App() {
       {userToken == null ? (
         <AuthStackNavigator onLoginSuccess={handleLoginSuccess} />
       ) : (
-        <AppStackNavigator onLogout={handleLogout} />
+        // Render the new MainTabsNavigator when authenticated
+        <BottomBar onLogout={handleLogout} /> // <--- CHANGE THIS LINE
       )}
       <StatusBar style="auto" />
     </NavigationContainer>
