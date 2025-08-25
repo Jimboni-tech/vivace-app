@@ -1,155 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-  StatusBar,
-  ActivityIndicator,
-  Alert
-} from 'react-native';
-import * as Google from 'expo-auth-session/providers/google';
-import * as WebBrowser from 'expo-web-browser';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-WebBrowser.maybeCompleteAuthSession();
-
-const { width, height } = Dimensions.get('window');
-
-const BACKGROUND_COLOR = '#E0F7FA';
-const BACKEND_URL = process.env.REACT_APP_API_BASE_URL;
-const GOOGLE_IOS_CLIENT_ID = '570016593022-5at03rqehieormc3ipm9vkadb4nnd08j.apps.googleusercontent.com';
-const GOOGLE_WEB_CLIENT_ID = '570016593022-j1vfe09bk9v003e9pmsocts0l0bi0obm.apps.googleusercontent.com';
-
-export default function WelcomeScreen({ navigation, onLoginSuccess }) {
-  const [loading, setLoading] = useState(false);
-
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    iosClientId: GOOGLE_IOS_CLIENT_ID,
-    webClientId: GOOGLE_WEB_CLIENT_ID,
-    redirectUri: 'vivace://auth/google/callback',
-  });
-
-  useEffect(() => {
-    if (response?.type === 'success') {
-      const { authentication } = response;
-      if (authentication?.idToken) {
-        handleGoogleSignIn(authentication.idToken);
-      } else {
-        Alert.alert('Google Sign-In Failed', 'No ID token received.');
-        setLoading(false);
-      }
-    } else if (response?.type === 'cancel') {
-      Alert.alert('Sign-In Cancelled', 'Google sign-in was cancelled.');
-      setLoading(false);
-    } else if (response?.type === 'error') {
-      Alert.alert('Sign-In Error', `Google sign-in failed: ${response.error?.message || 'Unknown error'}`);
-      setLoading(false);
-    }
-  }, [response]);
-
-  const handleGoogleSignIn = async (idToken) => {
-    setLoading(true);
-    try {
-      const res = await fetch(`${BACKEND_URL}/auth/google`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ idToken }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        await AsyncStorage.setItem('userToken', data.token);
-        if (typeof onLoginSuccess === 'function') {
-          onLoginSuccess(data.token);
-        } else {
-          console.warn('onLoginSuccess is not a function, navigating manually');
-          navigation.navigate('Home');
-        }
-        Alert.alert('Success', 'Google Sign-In successful!');
-      } else {
-        Alert.alert('Error', data.message || 'Google Sign-In failed on backend.');
-      }
-    } catch (error) {
-      console.error('Google Sign-In Network Error:', error.message);
-      if (error.message.includes('Network request failed')) {
-        Alert.alert('Error', 'Unable to connect to the server. Please check your internet connection.');
-      } else {
-        Alert.alert('Error', 'Network error during Google Sign-In.');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSignUpWithEmail = () => {
-    navigation.navigate('EmailRegister');
-  };
-
-  const handleLogin = () => {
-    navigation.navigate('Login');
-  };
-
+export default function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor={BACKGROUND_COLOR} />
-
-      <View style={styles.topSection}>
-        <Image
-          source={{ uri: 'https://placehold.co/180x180/000000/FFFFFF?text=VIVACE' }}
-          style={styles.logo}
-          accessibilityLabel="Vivace App Logo"
-        />
-        <Text style={styles.appName}>Vivace</Text>
+      <View style={styles.header}>
+        <Text style={styles.logo}>🎵</Text>
+        <Text style={styles.title}>Vivace</Text>
+        <Text style={styles.subtitle}>Your Musical Practice Companion</Text>
       </View>
 
-      <View style={styles.bottomSection}>
-        <TouchableOpacity
-          style={[styles.button, styles.googleButton]}
-          onPress={() => {
-            setLoading(true);
-            promptAsync();
-          }}
-          activeOpacity={0.7}
-          disabled={!request || loading}
-        >
-          <Image
-            source={{ uri: 'https://img.icons8.com/color/48/000000/google-logo.png' }}
-            style={styles.buttonIcon}
-          />
-          <Text style={styles.buttonText}>Sign up with Google</Text>
-        </TouchableOpacity>
+      <View style={styles.features}>
+        <View style={styles.feature}>
+          <Ionicons name="musical-notes" size={32} color="#3D9CFF" />
+          <Text style={styles.featureTitle}>Practice Tools</Text>
+          <Text style={styles.featureText}>Metronome, tuner, recorder, and notes all in one place</Text>
+        </View>
 
-        <TouchableOpacity
-          style={[styles.button, styles.emailButton]}
-          onPress={handleSignUpWithEmail}
-          activeOpacity={0.7}
-          disabled={loading}
-        >
-          <Image
-            source={{ uri: 'https://img.icons8.com/ios-filled/50/FFFFFF/mail.png' }}
-            style={styles.buttonIcon}
-          />
-          <Text style={styles.buttonText}>Sign up with Email</Text>
-        </TouchableOpacity>
+        <View style={styles.feature}>
+          <Ionicons name="trophy" size={32} color="#FFD700" />
+          <Text style={styles.featureTitle}>Gamification</Text>
+          <Text style={styles.featureText}>Earn XP, level up, and maintain streaks</Text>
+        </View>
 
-        <TouchableOpacity
+        <View style={styles.feature}>
+          <Ionicons name="people" size={32} color="#8B5CF6" />
+          <Text style={styles.featureTitle}>Social Features</Text>
+          <Text style={styles.featureText}>Connect with fellow musicians and share progress</Text>
+        </View>
+      </View>
+
+      <View style={styles.actions}>
+        <TouchableOpacity 
           style={styles.loginButton}
-          onPress={handleLogin}
-          activeOpacity={0.7}
-          disabled={loading}
+          onPress={() => navigation.navigate('Login')}
         >
-          <Text style={styles.loginButtonText}>
-            Already have an account? <Text style={styles.loginLink}>Login</Text>
-          </Text>
+          <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
-
-        {loading && <ActivityIndicator size="large" color="#0000ff" style={styles.activityIndicator} />}
+        
+        <TouchableOpacity 
+          style={styles.registerButton}
+          onPress={() => navigation.navigate('EmailRegister')}
+        >
+          <Text style={styles.registerButtonText}>Create Account</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -158,89 +53,76 @@ export default function WelcomeScreen({ navigation, onLoginSuccess }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: height * 0.05,
+    backgroundColor: '#121212',
+    padding: 20,
   },
-  topSection: {
+  header: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%',
   },
   logo: {
-    width: width * 0.45,
-    height: width * 0.45,
-    borderRadius: (width * 0.45) / 2,
-    marginBottom: 25,
-    resizeMode: 'contain',
-    backgroundColor: '#FFFFFF',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 8,
+    fontSize: 80,
+    marginBottom: 20,
   },
-  appName: {
-    fontSize: width * 0.13,
+  title: {
+    fontSize: 36,
     fontWeight: 'bold',
-    color: '#2C3E50',
-    letterSpacing: 2,
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
+    color: '#EAEAEA',
+    marginBottom: 10,
   },
-  bottomSection: {
-    width: '88%',
-    alignItems: 'center',
-    marginBottom: height * 0.04,
+  subtitle: {
+    fontSize: 18,
+    color: '#A1A1A1',
+    textAlign: 'center',
   },
-  button: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  features: {
+    flex: 1,
     justifyContent: 'center',
-    width: '100%',
-    paddingVertical: 16,
-    borderRadius: 35,
-    marginBottom: 18,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
-  googleButton: {
-    backgroundColor: '#4285F4',
+  feature: {
+    alignItems: 'center',
+    marginBottom: 30,
   },
-  emailButton: {
-    backgroundColor: '#6C757D',
+  featureTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#EAEAEA',
+    marginTop: 15,
+    marginBottom: 10,
   },
-  buttonIcon: {
-    width: 26,
-    height: 26,
-    marginRight: 12,
-    tintColor: '#FFFFFF',
+  featureText: {
+    fontSize: 16,
+    color: '#A1A1A1',
+    textAlign: 'center',
+    lineHeight: 24,
   },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 19,
-    fontWeight: '700',
+  actions: {
+    paddingBottom: 40,
   },
   loginButton: {
-    marginTop: 25,
-    paddingVertical: 10,
+    backgroundColor: '#3D9CFF',
+    paddingVertical: 16,
+    borderRadius: 12,
+    marginBottom: 15,
   },
   loginButtonText: {
-    fontSize: 17,
-    color: '#333333',
-  },
-  loginLink: {
+    color: '#FFFFFF',
+    fontSize: 18,
     fontWeight: 'bold',
-    color: '#007BFF',
-    textDecorationLine: 'underline',
+    textAlign: 'center',
   },
-  activityIndicator: {
-    marginTop: 20,
+  registerButton: {
+    backgroundColor: 'transparent',
+    paddingVertical: 16,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#3D9CFF',
+  },
+  registerButtonText: {
+    color: '#3D9CFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

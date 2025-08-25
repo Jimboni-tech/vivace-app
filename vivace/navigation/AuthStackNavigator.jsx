@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import WelcomeScreen from '../screens/Welcome.jsx';
-import LoginPage from '../screens/Auth/Login.jsx';
-import EmailRegisterScreen from '../screens/Auth/EmailRegister.jsx';
+import WelcomeScreen from '../screens/Welcome';
+import LoginScreen from '../screens/Auth/Login';
+import EmailRegisterScreen from '../screens/Auth/EmailRegister';
 
 const AuthStack = createNativeStackNavigator();
 
@@ -19,13 +19,12 @@ const AuthStackNavigator = ({ onLoginSuccess }) => {
         name="Login"
         options={{ headerShown: false }}
       >
-        {(props) => <LoginPage {...props} onLoginSuccess={onLoginSuccess} />}
+        {(props) => <LoginScreen {...props} onLoginSuccess={onLoginSuccess} />}
       </AuthStack.Screen>
       <AuthStack.Screen
         name="EmailRegister"
-        options={{ title: 'Sign Up with Email' }}
+        options={{ headerShown: false }}
       >
-        {/* Pass the onLoginSuccess prop to EmailRegisterScreen */}
         {(props) => <EmailRegisterScreen {...props} onLoginSuccess={onLoginSuccess} />}
       </AuthStack.Screen>
     </AuthStack.Navigator>

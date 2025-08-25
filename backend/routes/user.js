@@ -119,18 +119,21 @@ router.post('/auth/google', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    // Changed to expect email and password for registration
+    const { email, password } = req.body; 
 
-    if (!username || !password) {
-      return res.status(400).json({ message: 'Username and password are required' });
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    const existingUser = await User.findOne({ username });
+    // Check for existing user by email
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(409).json({ message: 'Username already exists' });
+      return res.status(409).json({ message: 'Email already registered' });
     }
 
-    const newUser = new User({ username, password });
+    // Create new user with email and password, setting username to email for consistency
+    const newUser = new User({ email, password, username: email }); 
     await newUser.save();
 
     // Generate JWT token for the newly registered user
@@ -147,20 +150,22 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    // Changed from username to email for login
+    const { email, password } = req.body; 
 
-    if (!username || !password) {
-      return res.status(400).json({ message: 'Username and password are required' });
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    const user = await User.findOne({ username });
+    // Find user by email instead of username
+    const user = await User.findOne({ email }); 
     if (!user) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).json({ message: 'Invalid email or password' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid username or password' });
+      return res.status(400).json({ message: 'Invalid email or password' });
     }
 
     const token = jwt.sign({ id: user._id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });

@@ -3,11 +3,11 @@ import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { jwtDecode } from 'jwt-decode'; // Correct import for jwt-decode
+import { jwtDecode } from 'jwt-decode';
 
 import AuthStackNavigator from './navigation/AuthStackNavigator';
-// Change this import to your new MainTabsNavigator
-import BottomBar from './components/BottomBar.jsx'; // <--- CHANGE THIS LINE
+import BottomBar from './components/BottomBar';
+import { SessionProvider } from './context/SessionContext';
 
 export default function App() {
   const [userToken, setUserToken] = React.useState(null);
@@ -17,10 +17,19 @@ export default function App() {
     const loadStoredToken = async () => {
       try {
         const token = await AsyncStorage.getItem('userToken');
-        if (token) {
+        if (token && token.trim() !== '') {
           try {
+            // Check if token has the correct format (3 parts separated by dots)
+            const tokenParts = token.split('.');
+            if (tokenParts.length !== 3) {
+              console.log('Invalid token format, clearing storage');
+              await AsyncStorage.removeItem('userToken');
+              setUserToken(null);
+              return;
+            }
+
             const decoded = jwtDecode(token);
-            const currentTime = Date.now() / 1000; // Current time in seconds
+            const currentTime = Date.now() / 1000;
             if (decoded.exp && decoded.exp > currentTime) {
               setUserToken(token);
             } else {
@@ -48,8 +57,10 @@ export default function App() {
 
   const handleLoginSuccess = async (token) => {
     try {
-      await AsyncStorage.setItem('userToken', token);
-      setUserToken(token);
+      if (token && token.trim() !== '') {
+        await AsyncStorage.setItem('userToken', token);
+        setUserToken(token);
+      }
     } catch (e) {
       console.error('Failed to store token:', e.message);
     }
@@ -67,31 +78,37 @@ export default function App() {
   if (isLoading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
-        <Text>Loading application...</Text>
+        <ActivityIndicator size="large" color="#3D9CFF" />
+        <Text style={styles.loadingText}>Loading Vivace...</Text>
       </View>
     );
   }
 
   return (
-    <NavigationContainer>
-      {userToken == null ? (
-        <AuthStackNavigator onLoginSuccess={handleLoginSuccess} />
-      ) : (
-        // Render the new MainTabsNavigator when authenticated
-        <BottomBar onLogout={handleLogout} /> // <--- CHANGE THIS LINE
-      )}
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <SessionProvider>
+      <NavigationContainer>
+        {userToken == null ? (
+          <AuthStackNavigator onLoginSuccess={handleLoginSuccess} />
+        ) : (
+          <BottomBar onLogout={handleLogout} />
+        )}
+        <StatusBar style="light" />
+      </NavigationContainer>
+    </SessionProvider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#121212',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+  },
+  loadingText: {
+    color: '#EAEAEA',
+    fontSize: 18,
+    marginTop: 20,
   },
 });
