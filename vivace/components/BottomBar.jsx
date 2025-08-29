@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSession } from '../context/SessionContext';
 
@@ -14,6 +14,18 @@ const Tab = createBottomTabNavigator();
 const BottomBar = ({ onLogout }) => {
   const { isSessionActive } = useSession();
 
+  // Custom button component for the session tab
+  const SessionButton = ({ children, onPress }) => (
+    <TouchableOpacity
+      style={styles.sessionButtonContainer}
+      onPress={onPress}
+    >
+      <View style={styles.sessionButton}>
+        {children}
+      </View>
+    </TouchableOpacity>
+  );
+
   const renderNormalBottomBar = () => (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -22,19 +34,17 @@ const BottomBar = ({ onLogout }) => {
 
           if (route.name === 'HomeTab') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'StartSessionTab') {
-            iconName = focused ? 'play-circle' : 'play-circle-outline';
           } else if (route.name === 'ProfileTab') {
             iconName = focused ? 'person' : 'person-outline';
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#3D9CFF', 
-        tabBarInactiveTintColor: '#A1A1A1',   
+        tabBarInactiveTintColor: '#6c757d',   
         tabBarStyle: {
-          backgroundColor: '#1E1E1E',     
+          backgroundColor: '#FFFFFF',     
           borderTopWidth: 1,
-          borderTopColor: '#333',
+          borderTopColor: '#E9ECEF',
           height: 90, 
           paddingBottom: 20, 
           paddingTop: 10,
@@ -42,7 +52,7 @@ const BottomBar = ({ onLogout }) => {
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: 'bold',
-          color: '#EAEAEA',
+          color: '#1E1E1E',
         },
         headerShown: false, 
       })}
@@ -58,7 +68,17 @@ const BottomBar = ({ onLogout }) => {
         name="StartSessionTab"
         component={StartSessionScreen}
         options={{
-          title: 'Session', 
+          tabBarButton: (props) => (
+            <SessionButton {...props}>
+              <Ionicons 
+                name={isSessionActive ? 'pause-circle' : 'play-circle'} 
+                size={48} 
+                color="#FFFFFF" 
+                backgroundColor="transparent"
+              />
+            </SessionButton>
+          ),
+          tabBarLabel: 'Session',
         }}
       />
       <Tab.Screen
@@ -77,7 +97,27 @@ const BottomBar = ({ onLogout }) => {
 };
 
 const styles = StyleSheet.create({
-  // Styles removed since they're no longer needed
+  sessionButtonContainer: {
+    top: -20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sessionButton: {
+    backgroundColor: '#3D9CFF',
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#3D9CFF',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 7,
+    elevation: 8,
+  },
 });
 
 export default BottomBar;
