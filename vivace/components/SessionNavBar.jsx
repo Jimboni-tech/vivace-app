@@ -158,10 +158,6 @@ const SessionNavBar = () => {
 
 const styles = StyleSheet.create({
   sessionNavBar: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
     backgroundColor: '#1E1E1E',
     borderTopWidth: 1,
     borderTopColor: '#333',
@@ -169,6 +165,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 20,
     maxHeight: 300,
+    // Ensure it stays at the bottom
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1000,
   },
   toolButtons: {
     flexDirection: 'row',

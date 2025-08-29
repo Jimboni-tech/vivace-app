@@ -1,0 +1,3504 @@
+{
+  error: Error: Cannot find module './routes/achievement.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:16:27)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/achievement.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/achievement.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:16:27)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/achievement.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:16:27)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:25:24 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 22555,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 98353152,
+      heapTotal: 60686336,
+      heapUsed: 30618112,
+      external: 20543497,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 6.8115234375, 4.03369140625, 3.87109375 ],
+    uptime: 899836
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 16,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:25:24'
+}
+{
+  error: Error: Cannot find module './routes/achievement.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:16:27)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/achievement.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/achievement.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:16:27)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/achievement.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:16:27)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:25:24 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 22554,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 99090432,
+      heapTotal: 61472768,
+      heapUsed: 30154384,
+      external: 20543497,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 6.8115234375, 4.03369140625, 3.87109375 ],
+    uptime: 899836
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 27,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 16,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:25:24'
+}
+{
+  error: Error: Cannot find module './routes/challenge.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:17:25)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/challenge.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/challenge.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:17:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/challenge.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:17:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:02 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 23585,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 99074048,
+      heapTotal: 59637760,
+      heapUsed: 32591048,
+      external: 20543498,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 14.94189453125, 6.5087890625, 4.7861328125 ],
+    uptime: 899874
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 25,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:02'
+}
+{
+  error: Error: Cannot find module './routes/challenge.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:17:25)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/challenge.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/challenge.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:17:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/challenge.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:17:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:02 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 23558,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 100007936,
+      heapTotal: 59637760,
+      heapUsed: 32469824,
+      external: 20543498,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 14.94189453125, 6.5087890625, 4.7861328125 ],
+    uptime: 899874
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 25,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 17,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:02'
+}
+{
+  error: Error: Cannot find module './routes/piece.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:18:21)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/piece.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/piece.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:18:21)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/piece.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:18:21)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:09 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 23905,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 100646912,
+      heapTotal: 60162048,
+      heapUsed: 31993920,
+      external: 20543497,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 15.1865234375, 6.69921875, 4.86328125 ],
+    uptime: 899881
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 18,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:09'
+}
+{
+  error: Error: Cannot find module './routes/piece.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:18:21)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/piece.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/piece.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:18:21)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/piece.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:18:21)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:09 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 23904,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 103448576,
+      heapTotal: 61472768,
+      heapUsed: 31200776,
+      external: 20543497,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 15.1865234375, 6.69921875, 4.86328125 ],
+    uptime: 899881
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 21,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 18,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:09'
+}
+{
+  error: Error: Cannot find module './routes/social.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:19:22)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/social.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/social.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:19:22)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/social.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:19:22)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:17 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 24189,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 102137856,
+      heapTotal: 61472768,
+      heapUsed: 31430032,
+      external: 20543497,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 18.70947265625, 7.71728515625, 5.24462890625 ],
+    uptime: 899889
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 22,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 19,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:17'
+}
+{
+  error: Error: Cannot find module './routes/social.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:19:22)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/social.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/social.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:19:22)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/social.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:19:22)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:17 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 24190,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 102252544,
+      heapTotal: 61210624,
+      heapUsed: 31299776,
+      external: 20543497,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 18.70947265625, 7.71728515625, 5.24462890625 ],
+    uptime: 899889
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 22,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 19,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:17'
+}
+{
+  error: Error: Cannot find module './routes/analytics.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:20:25)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/analytics.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/analytics.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:20:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/analytics.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:20:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:24 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 24446,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 102023168,
+      heapTotal: 59637760,
+      heapUsed: 32586248,
+      external: 20543498,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 19.29296875, 8.0205078125, 5.3662109375 ],
+    uptime: 899896
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 25,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 20,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:24'
+}
+{
+  error: Error: Cannot find module './routes/analytics.js'
+  Require stack:
+  - /Users/jimmyzhou/vivace-app/backend/server.js
+      at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)
+      at Function._load (node:internal/modules/cjs/loader:1055:27)
+      at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)
+      at Module.require (node:internal/modules/cjs/loader:1311:12)
+      at require (node:internal/modules/helpers:136:16)
+      at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:20:25)
+      at Module._compile (node:internal/modules/cjs/loader:1554:14)
+      at Object..js (node:internal/modules/cjs/loader:1706:10)
+      at Module.load (node:internal/modules/cjs/loader:1289:32) {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: [ '/Users/jimmyzhou/vivace-app/backend/server.js' ]
+  },
+  level: 'error',
+  message: "uncaughtException: Cannot find module './routes/analytics.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    "Error: Cannot find module './routes/analytics.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:20:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  stack: "Error: Cannot find module './routes/analytics.js'\n" +
+    'Require stack:\n' +
+    '- /Users/jimmyzhou/vivace-app/backend/server.js\n' +
+    '    at Function._resolveFilename (node:internal/modules/cjs/loader:1225:15)\n' +
+    '    at Function._load (node:internal/modules/cjs/loader:1055:27)\n' +
+    '    at TracingChannel.traceSync (node:diagnostics_channel:322:14)\n' +
+    '    at wrapModuleLoad (node:internal/modules/cjs/loader:220:24)\n' +
+    '    at Module.require (node:internal/modules/cjs/loader:1311:12)\n' +
+    '    at require (node:internal/modules/helpers:136:16)\n' +
+    '    at Object.<anonymous> (/Users/jimmyzhou/vivace-app/backend/server.js:20:25)\n' +
+    '    at Module._compile (node:internal/modules/cjs/loader:1554:14)\n' +
+    '    at Object..js (node:internal/modules/cjs/loader:1706:10)\n' +
+    '    at Module.load (node:internal/modules/cjs/loader:1289:32)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:24 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 24447,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 103546880,
+      heapTotal: 61472768,
+      heapUsed: 31187680,
+      external: 20543497,
+      arrayBuffers: 18262463
+    }
+  },
+  os: {
+    loadavg: [ 19.29296875, 8.0205078125, 5.3662109375 ],
+    uptime: 899896
+  },
+  trace: [
+    {
+      column: 15,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._resolveFilename',
+      line: 1225,
+      method: '_resolveFilename',
+      native: false
+    },
+    {
+      column: 27,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Function._load',
+      line: 1055,
+      method: '_load',
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:diagnostics_channel',
+      function: 'TracingChannel.traceSync',
+      line: 322,
+      method: 'traceSync',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'wrapModuleLoad',
+      line: 220,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.require',
+      line: 1311,
+      method: 'require',
+      native: false
+    },
+    {
+      column: 16,
+      file: 'node:internal/modules/helpers',
+      function: 'require',
+      line: 136,
+      method: null,
+      native: false
+    },
+    {
+      column: 25,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: null,
+      line: 20,
+      method: null,
+      native: false
+    },
+    {
+      column: 14,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module._compile',
+      line: 1554,
+      method: '_compile',
+      native: false
+    },
+    {
+      column: 10,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Object..js',
+      line: 1706,
+      method: '.js',
+      native: false
+    },
+    {
+      column: 32,
+      file: 'node:internal/modules/cjs/loader',
+      function: 'Module.load',
+      line: 1289,
+      method: 'load',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:24'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:26:32 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 24642,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 109068288,
+      heapTotal: 65355776,
+      heapUsed: 29140376,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 19.11279296875, 8.349609375, 5.51318359375 ],
+    uptime: 899904
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 182,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:26:32'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Tue Aug 26 2025 19:29:01 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 28537,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 107511808,
+      heapTotal: 65617920,
+      heapUsed: 29154192,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 5.0205078125, 6.61328125, 5.27392578125 ],
+    uptime: 900053
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 182,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 19:29:01'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Tue Aug 26 2025 21:51:26 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 57195,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 106463232,
+      heapTotal: 65355776,
+      heapUsed: 29166544,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 5.6630859375, 7.62744140625, 7.19580078125 ],
+    uptime: 908598
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 182,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 21:51:26'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Tue Aug 26 2025 22:03:20 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 72920,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 107626496,
+      heapTotal: 64831488,
+      heapUsed: 29212024,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 3.65576171875, 3.67431640625, 4.853515625 ],
+    uptime: 909312
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 182,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 22:03:20'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Tue Aug 26 2025 22:04:18 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 74358,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 106741760,
+      heapTotal: 65093632,
+      heapUsed: 29010048,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 3.60302734375, 3.6513671875, 4.76904296875 ],
+    uptime: 909370
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 182,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 22:04:18'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:182:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Tue Aug 26 2025 22:05:42 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 76229,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 106233856,
+      heapTotal: 65617920,
+      heapUsed: 29126512,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 2.52099609375, 3.28271484375, 4.51904296875 ],
+    uptime: 909454
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 182,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 22:05:42'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Tue Aug 26 2025 22:08:53 GMT-0500 (Central Daylight Time)',
+  process: {
+    pid: 81545,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 105627648,
+      heapTotal: 64569344,
+      heapUsed: 28998184,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: { loadavg: [ 8.1484375, 4.748046875, 4.8271484375 ], uptime: 909645 },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-26 22:08:53'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:28:33 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 24573,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 105922560,
+      heapTotal: 64831488,
+      heapUsed: 29103744,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 3.58984375, 5.0068359375, 8.224609375 ],
+    uptime: 1062025
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:28:33'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:28:38 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 24652,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 106315776,
+      heapTotal: 64569344,
+      heapUsed: 28958128,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 3.732421875, 4.98974609375, 8.1806640625 ],
+    uptime: 1062030
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:28:38'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:29:46 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 26166,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 107069440,
+      heapTotal: 65093632,
+      heapUsed: 29134352,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 5.86669921875, 5.3330078125, 8.0703125 ],
+    uptime: 1062098
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:29:46'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:29:55 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 26354,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 107282432,
+      heapTotal: 64307200,
+      heapUsed: 28977032,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 6.54638671875, 5.48828125, 8.0927734375 ],
+    uptime: 1062107
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:29:55'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:30:05 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 26506,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 105824256,
+      heapTotal: 65093632,
+      heapUsed: 28932560,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 6.56103515625, 5.52197265625, 8.07373046875 ],
+    uptime: 1062117
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:30:05'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:30:16 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 26801,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 108036096,
+      heapTotal: 65617920,
+      heapUsed: 29009816,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 5.94580078125, 5.42236328125, 8.00830078125 ],
+    uptime: 1062128
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:30:16'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:30:21 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 26984,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 107331584,
+      heapTotal: 64569344,
+      heapUsed: 28956592,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: { loadavg: [ 5.78955078125, 5.3984375, 7.984375 ], uptime: 1062133 },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:30:21'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:31:03 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 27795,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 106594304,
+      heapTotal: 64045056,
+      heapUsed: 28933272,
+      external: 20624024,
+      arrayBuffers: 18281446
+    }
+  },
+  os: {
+    loadavg: [ 10.6337890625, 6.75537109375, 8.35009765625 ],
+    uptime: 1062175
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:31:03'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:31:14 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 28089,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 105234432,
+      heapTotal: 65093632,
+      heapUsed: 28929896,
+      external: 20624024,
+      arrayBuffers: 18281446
+    }
+  },
+  os: {
+    loadavg: [ 9.71923828125, 6.68212890625, 8.3046875 ],
+    uptime: 1062186
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:31:14'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:32:32 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 30343,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 105775104,
+      heapTotal: 65093632,
+      heapUsed: 29110864,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 5.63623046875, 6.19921875, 7.98974609375 ],
+    uptime: 1062264
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:32:32'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:32:59 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 30887,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 106168320,
+      heapTotal: 65093632,
+      heapUsed: 29122056,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 5.572265625, 6.130859375, 7.90185546875 ],
+    uptime: 1062291
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:32:59'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:36:28 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 37584,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 104316928,
+      heapTotal: 65355776,
+      heapUsed: 29107664,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 3.24755859375, 4.84033203125, 6.9765625 ],
+    uptime: 1062500
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:36:28'
+}
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:188:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Thu Aug 28 2025 17:36:34 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 37847,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 106397696,
+      heapTotal: 65355776,
+      heapUsed: 28929856,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 3.37548828125, 4.81298828125, 6.94140625 ],
+    uptime: 1062506
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 188,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-28 17:36:34'
+}

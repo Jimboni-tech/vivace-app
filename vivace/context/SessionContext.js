@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const SessionContext = createContext();
 
@@ -21,10 +21,33 @@ export const SessionProvider = ({ children }) => {
     notes: '',
   });
 
+  // Practice Tools State
+  const [activeTool, setActiveTool] = useState(null);
+  const [metronomeBpm, setMetronomeBpm] = useState(120);
+  const [isMetronomeOn, setIsMetronomeOn] = useState(false);
+  const [tunerNote, setTunerNote] = useState('A');
+  const [tunerCents, setTunerCents] = useState(0);
+  const [isRecording, setIsRecording] = useState(false);
+  const [sessionNotes, setSessionNotes] = useState('');
+
+  // Timer effect
+  useEffect(() => {
+    let interval = null;
+    if (isSessionActive) {
+      interval = setInterval(() => {
+        setSessionTime(prevTime => prevTime + 1);
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isSessionActive]);
+
   const startSession = () => {
     setIsSessionActive(true);
     setSessionTime(0);
     setSessionXp(0);
+    setActiveTool(null);
     setSessionData(prev => ({
       ...prev,
       startTime: new Date(),
@@ -45,6 +68,7 @@ export const SessionProvider = ({ children }) => {
     setIsSessionActive(false);
     setSessionTime(0);
     setSessionXp(0);
+    setActiveTool(null);
     setSessionData({
       startTime: null,
       endTime: null,
@@ -55,9 +79,11 @@ export const SessionProvider = ({ children }) => {
 
   const endSession = () => {
     setIsSessionActive(false);
+    setActiveTool(null);
     setSessionData(prev => ({
       ...prev,
       endTime: new Date(),
+      notes: sessionNotes,
     }));
     
     // Calculate final XP and save session
@@ -68,13 +94,14 @@ export const SessionProvider = ({ children }) => {
       duration: sessionTime,
       xp: finalXp,
       toolsUsed: sessionData.toolsUsed,
-      notes: sessionData.notes,
+      notes: sessionNotes,
     });
     
     // Reset session state
     setTimeout(() => {
       setSessionTime(0);
       setSessionXp(0);
+      setSessionNotes('');
       setSessionData({
         startTime: null,
         endTime: null,
@@ -100,21 +127,57 @@ export const SessionProvider = ({ children }) => {
         ...prev,
         toolsUsed: [...prev.toolsUsed, tool],
       }));
+      // Award XP for using tools
+      setSessionXp(prev => prev + 5);
     }
   };
 
   const updateSessionNotes = (notes) => {
-    setSessionData(prev => ({
-      ...prev,
-      notes,
-    }));
+    setSessionNotes(notes);
+  };
+
+  // Practice Tool Functions
+  const toggleTool = (tool) => {
+    if (activeTool === tool) {
+      setActiveTool(null);
+    } else {
+      setActiveTool(tool);
+      addToolUsed(tool);
+    }
+  };
+
+  const updateMetronomeBpm = (newBpm) => {
+    setMetronomeBpm(Math.max(40, Math.min(240, newBpm)));
+  };
+
+  const toggleMetronome = () => {
+    setIsMetronomeOn(!isMetronomeOn);
+    if (!isMetronomeOn) {
+      addToolUsed('metronome');
+    }
+  };
+
+  const updateTuner = (note, cents) => {
+    setTunerNote(note);
+    setTunerCents(cents);
+    addToolUsed('tuner');
+  };
+
+  const toggleRecording = () => {
+    setIsRecording(!isRecording);
+    if (!isRecording) {
+      addToolUsed('recorder');
+    }
   };
 
   const value = {
+    // Session State
     isSessionActive,
     sessionTime,
     sessionXp,
     sessionData,
+    
+    // Session Actions
     startSession,
     pauseSession,
     resumeSession,
@@ -124,6 +187,22 @@ export const SessionProvider = ({ children }) => {
     updateSessionXp,
     addToolUsed,
     updateSessionNotes,
+    
+    // Practice Tools State
+    activeTool,
+    metronomeBpm,
+    isMetronomeOn,
+    tunerNote,
+    tunerCents,
+    isRecording,
+    sessionNotes,
+    
+    // Practice Tools Actions
+    toggleTool,
+    updateMetronomeBpm,
+    toggleMetronome,
+    updateTuner,
+    toggleRecording,
   };
 
   return (

@@ -1,0 +1,42 @@
+{
+  service: 'vivace-backend',
+  stack: 'Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n' +
+    '    at ServerResponse.setHeader (node:_http_outgoing:699:11)\n' +
+    '    at ServerResponse.header (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/response.js:794:10)\n' +
+    '    at ServerResponse.send (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/response.js:174:12)\n' +
+    '    at ServerResponse.json (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/response.js:278:15)\n' +
+    '    at /Users/jimmyzhou/vivace-app/backend/routes/user.js:25:34\n' +
+    '    at /Users/jimmyzhou/vivace-app/backend/node_modules/jsonwebtoken/verify.js:171:14\n' +
+    '    at getSecret (/Users/jimmyzhou/vivace-app/backend/node_modules/jsonwebtoken/verify.js:97:14)\n' +
+    '    at module.exports [as verify] (/Users/jimmyzhou/vivace-app/backend/node_modules/jsonwebtoken/verify.js:101:10)\n' +
+    '    at authenticateToken (/Users/jimmyzhou/vivace-app/backend/routes/user.js:22:7)\n' +
+    '    at Layer.handle [as handle_request] (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/router/layer.js:95:5)',
+  url: '/api/auth/profile-info',
+  method: 'POST',
+  ip: '::1',
+  userAgent: 'curl/8.7.1',
+  level: 'error',
+  message: 'Error: Cannot set headers after they are sent to the client',
+  timestamp: '2025-08-28 17:34:42'
+}
+{
+  service: 'vivace-backend',
+  stack: 'Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n' +
+    '    at ServerResponse.setHeader (node:_http_outgoing:699:11)\n' +
+    '    at ServerResponse.header (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/response.js:794:10)\n' +
+    '    at ServerResponse.send (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/response.js:174:12)\n' +
+    '    at ServerResponse.json (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/response.js:278:15)\n' +
+    '    at /Users/jimmyzhou/vivace-app/backend/routes/user.js:25:34\n' +
+    '    at /Users/jimmyzhou/vivace-app/backend/node_modules/jsonwebtoken/verify.js:190:16\n' +
+    '    at getSecret (/Users/jimmyzhou/vivace-app/backend/node_modules/jsonwebtoken/verify.js:97:14)\n' +
+    '    at module.exports [as verify] (/Users/jimmyzhou/vivace-app/backend/node_modules/jsonwebtoken/verify.js:101:10)\n' +
+    '    at authenticateToken (/Users/jimmyzhou/vivace-app/backend/routes/user.js:22:7)\n' +
+    '    at Layer.handle [as handle_request] (/Users/jimmyzhou/vivace-app/backend/node_modules/express/lib/router/layer.js:95:5)',
+  url: '/api/auth/profile-info',
+  method: 'POST',
+  ip: '::1',
+  userAgent: 'Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0',
+  level: 'error',
+  message: 'Error: Cannot set headers after they are sent to the client',
+  timestamp: '2025-08-28 19:06:14'
+}

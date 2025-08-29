@@ -11,19 +11,35 @@ const router = express.Router();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+/**
+ * Middleware to authenticate a user via JWT token.
+ * It checks for the token in the 'Authorization' header and verifies its validity.
+ * It passes the decoded user payload to the next middleware via req.user.
+ */
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
+  // If no token is provided, return a 401 Unauthorized response.
   if (token == null) {
+    // The 'return' keyword is crucial here to stop execution.
     return res.status(401).json({ message: 'Authentication token required' });
   }
 
+  // Verify the provided token using the JWT_SECRET.
   jwt.verify(token, JWT_SECRET, (err, user) => {
+    // If verification fails (e.g., token is expired or invalid), return a 403 Forbidden response.
     if (err) {
       console.error('JWT verification error:', err);
-      return res.sendStatus(403).json({ message: 'Invalid or expired token' });
+      
+      // THIS IS THE KEY FIX: You must use res.status().json() together.
+      // res.sendStatus(403) is a shortcut that sends the response immediately,
+      // and you cannot then call .json() on it. The headers are already sent.
+      // The `return` keyword is also vital to prevent the next() call.
+      return res.status(403).json({ message: 'Invalid or expired token' });
     }
+
+    // If the token is valid, attach the user payload to the request object and proceed.
     req.user = user;
     next();
   });
@@ -133,7 +149,60 @@ router.post('/register', async (req, res) => {
     }
 
     // Create new user with email and password, setting username to email for consistency
-    const newUser = new User({ email, password, username: email }); 
+    const newUser = new User({ 
+      email, 
+      password, 
+      username: email,
+      profile: {
+        firstName: '',
+        lastName: '',
+        displayName: email
+      },
+      musicalProfile: {
+        primaryInstrument: 'piano',
+        skillLevel: 'beginner',
+        genres: [],
+        goals: [],
+        customGoals: [],
+        practiceGoals: {
+          dailyMinutes: 30,
+          weeklySessions: 5
+        }
+      },
+      stats: {
+        totalPracticeTime: 0,
+        totalSessions: 0,
+        currentStreak: 0,
+        longestStreak: 0,
+        averageSessionLength: 0,
+        totalXP: 0,
+        level: 1,
+        achievements: []
+      },
+      social: {
+        friends: [],
+        friendRequests: { sent: [], received: [] },
+        followers: [],
+        following: [],
+        isPublic: true,
+        allowFriendRequests: true
+      },
+      preferences: {
+        notifications: {
+          email: true,
+          push: true,
+          reminders: true,
+          social: true
+        },
+        privacy: {
+          showProgress: true,
+          showStats: true,
+          allowMessages: true
+        },
+        theme: 'dark',
+        language: 'en'
+      }
+    });
     await newUser.save();
 
     // Generate JWT token for the newly registered user
@@ -188,6 +257,134 @@ router.get('/profile', authenticateToken, async (req, res) => {
   } catch (error) {
     console.error('Profile access error:', error);
     res.status(500).json({ message: 'Server error accessing profile' });
+  }
+});
+
+router.post('/profile/complete', authenticateToken, async (req, res) => {
+  try {
+    const { 
+      firstName, 
+      lastName, 
+      displayName, 
+      primaryInstrument, 
+      skillLevel, 
+      goals, 
+      customGoals, 
+      practiceGoals 
+    } = req.body;
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update profile information
+    if (firstName) user.profile.firstName = firstName;
+    if (lastName) user.profile.lastName = lastName;
+    if (displayName) user.profile.displayName = displayName;
+    
+    // Update musical profile
+    if (primaryInstrument) user.musicalProfile.primaryInstrument = primaryInstrument;
+    if (skillLevel) user.musicalProfile.skillLevel = skillLevel;
+    if (goals && Array.isArray(goals)) user.musicalProfile.goals = goals;
+    if (customGoals && Array.isArray(customGoals)) user.musicalProfile.customGoals = customGoals;
+    
+    // Update practice goals
+    if (practiceGoals) {
+      if (practiceGoals.dailyMinutes) user.musicalProfile.practiceGoals.dailyMinutes = practiceGoals.dailyMinutes;
+      if (practiceGoals.weeklySessions) user.musicalProfile.practiceGoals.weeklySessions = practiceGoals.weeklySessions;
+    }
+
+    await user.save();
+
+    res.status(200).json({ 
+      message: 'Profile completed successfully', 
+      user: {
+        id: user._id,
+        email: user.email,
+        profile: user.profile,
+        musicalProfile: user.musicalProfile
+      }
+    });
+  } catch (error) {
+    console.error('Profile completion error:', error);
+    res.status(500).json({ message: 'Server error during profile completion' });
+  }
+});
+
+router.post('/profile-info', authenticateToken, async (req, res) => {
+  try {
+    const { firstName, lastName, displayName, primaryInstrument, skillLevel } = req.body;
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update profile information
+    if (firstName) user.profile.firstName = firstName;
+    if (lastName) user.profile.lastName = lastName;
+    if (displayName) user.profile.displayName = displayName;
+    
+    // Update musical profile
+    if (primaryInstrument) user.musicalProfile.primaryInstrument = primaryInstrument;
+    if (skillLevel) user.musicalProfile.skillLevel = skillLevel;
+
+    await user.save();
+
+    res.status(200).json({ 
+      message: 'Profile information updated successfully',
+      user: {
+        id: user._id,
+        profile: user.profile,
+        musicalProfile: user.musicalProfile
+      }
+    });
+  } catch (error) {
+    console.error('Profile info update error:', error);
+    res.status(500).json({ message: 'Server error during profile info update' });
+  }
+});
+
+router.post('/practice-goals', authenticateToken, async (req, res) => {
+  try {
+    const { goals, customGoals, practiceGoals } = req.body;
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update musical profile with goals and practice preferences
+    if (goals && Array.isArray(goals)) {
+      user.musicalProfile.goals = goals;
+    }
+    
+    if (customGoals && customGoals.trim()) {
+      user.musicalProfile.customGoals = [customGoals.trim()];
+    }
+    
+    if (practiceGoals) {
+      if (practiceGoals.dailyMinutes) {
+        user.musicalProfile.practiceGoals.dailyMinutes = practiceGoals.dailyMinutes;
+      }
+      if (practiceGoals.weeklySessions) {
+        user.musicalProfile.practiceGoals.weeklySessions = practiceGoals.weeklySessions;
+      }
+    }
+
+    await user.save();
+
+    res.status(200).json({ 
+      message: 'Practice goals saved successfully',
+      user: {
+        id: user._id,
+        musicalProfile: user.musicalProfile
+      }
+    });
+  } catch (error) {
+    console.error('Practice goals save error:', error);
+    res.status(500).json({ message: 'Server error during practice goals save' });
   }
 });
 
