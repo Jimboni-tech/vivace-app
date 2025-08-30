@@ -646,3 +646,159 @@
   service: 'vivace-backend',
   timestamp: '2025-08-29 16:45:04'
 }
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 17:19:44'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 17:19:44'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 17:19:44'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 20:50:39'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 20:50:39'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 20:50:39'
+}
+{
+  message: '::1 - - [30/Aug/2025:00:51:20 +0000] "POST /api/auth/login HTTP/1.1" 400 39 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 20:51:20'
+}
+{
+  message: '::1 - - [30/Aug/2025:00:51:27 +0000] "POST /api/auth/login HTTP/1.1" 400 39 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 20:51:27'
+}
+{
+  message: '::1 - - [30/Aug/2025:00:51:31 +0000] "POST /api/auth/login HTTP/1.1" 400 39 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 20:51:31'
+}
+{
+  message: '::1 - - [30/Aug/2025:00:51:46 +0000] "POST /api/auth/login HTTP/1.1" 200 261 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 20:51:46'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:01 +0000] "GET /api/auth/profile HTTP/1.1" 403 38 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:01'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:01 +0000] "GET /api/auth/profile HTTP/1.1" 403 38 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:01'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:01 +0000] "GET /api/auth/profile HTTP/1.1" 403 38 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:01'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:01 +0000] "GET /api/practice-sessions?limit=5 HTTP/1.1" 404 84 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:01'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:01 +0000] "GET /api/practice-sessions?limit=5 HTTP/1.1" 404 84 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:01'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:01 +0000] "GET /api/practice-sessions?limit=5 HTTP/1.1" 404 84 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:01'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:04 +0000] "GET /api/auth/profile HTTP/1.1" 403 38 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:04'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:35:04 +0000] "GET /api/practice-sessions?limit=5 HTTP/1.1" 404 84 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:35:04'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:45:58 +0000] "GET /api/auth/profile HTTP/1.1" 403 38 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:45:58'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:45:58 +0000] "GET /api/practice-sessions?limit=5 HTTP/1.1" 404 84 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:45:58'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:50:46 +0000] "GET /api/auth/profile HTTP/1.1" 200 1098 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:50:46'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:50:50 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:50:50'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:53:12'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:53:12'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:53:12'
+}
+{
+  message: '::1 - - [30/Aug/2025:01:53:28 +0000] "POST /api/auth/login HTTP/1.1" 200 261 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:53:28'
+}

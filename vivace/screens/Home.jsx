@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList, ActivityIndicator, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_BASE_URL } from '../constants/api'; // Use the original import
+
+const getUserToken = async () => {
+  try {
+    const token = await AsyncStorage.getItem('userToken');
+    return token;
+  } catch (e) {
+    console.error("Failed to retrieve the token.", e);
+    return null;
+  }
+};
 
 const HomeScreen = ({ navigation }) => {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [userName, setUserName] = useState('Musician');
   const [userStats, setUserStats] = useState({
-    level: 5,
-    xp: 750,
-    xpToNext: 1000,
-    streak: 7,
-    totalHours: 24.5,
-    weeklyHours: 8.2
+    level: 1,
+    xp: 0,
+    xpToNext: 100,
+    streak: 0,
+    totalHours: 0,
+    weeklyHours: 0
   });
+  const [recentSessions, setRecentSessions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Mock data for friends and feed
   const friends = [
     { id: 1, name: 'Sarah', level: 8, streak: 12, avatar: '🎻' },
     { id: 2, name: 'Mike', level: 6, streak: 5, avatar: '🎸' },
@@ -21,55 +35,109 @@ const HomeScreen = ({ navigation }) => {
     { id: 4, name: 'Alex', level: 4, streak: 3, avatar: '🥁' },
   ];
 
-  const feedPosts = [
-    {
-      id: 1,
-      user: 'Sarah',
-      avatar: '🎻',
-      action: 'completed a 45-minute practice session',
-      xp: 150,
-      time: '2 hours ago',
-      likes: 3,
-      comments: 1
-    },
-    {
-      id: 2,
-      user: 'Mike',
-      avatar: '🎸',
-      action: 'reached a 5-day streak!',
-      xp: 50,
-      time: '4 hours ago',
-      likes: 5,
-      comments: 2
-    },
-    {
-      id: 3,
-      user: 'Emma',
-      avatar: '🎹',
-      action: 'unlocked Virtuoso Purple theme',
-      xp: 200,
-      time: '1 day ago',
-      likes: 8,
-      comments: 3
-    }
-  ];
-
-  const leaderboardData = [
-    { rank: 1, name: 'Emma', xp: 2850, avatar: '🎹' },
-    { rank: 2, name: 'Sarah', xp: 2400, avatar: '🎻' },
-    { rank: 3, name: 'Mike', xp: 2100, avatar: '🎸' },
-    { rank: 4, name: 'Alex', xp: 1800, avatar: '🥁' },
-    { rank: 5, name: 'You', xp: 1750, avatar: '🎵' },
-  ];
-
   const startSession = () => {
     navigation.navigate('StartSessionTab');
   };
 
   const getXpPercentage = () => {
+    if (userStats.xpToNext <= 0) return 0;
     return (userStats.xp / userStats.xpToNext) * 100;
   };
 
+  const fetchWithTimeout = (url, options, timeout = 15000) => {
+    return Promise.race([
+      fetch(url, options),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('timeout')), timeout)
+      )
+    ]);
+  };
+
+  const fetchUserData = async () => {
+    setLoading(true);
+    setError(null);
+    const token = await getUserToken();
+
+    if (!token) {
+      setError("Authentication failed. Please log in again.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // Fetch user profile and stats
+      const profileResponse = await fetchWithTimeout(`${API_BASE_URL}/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!profileResponse.ok) {
+        const errorText = await profileResponse.text();
+        console.error("API Error Response:", errorText);
+        if (profileResponse.status === 401) {
+          setError("Session expired. Please log in again.");
+        } else {
+          setError(`Server error: ${profileResponse.status}`);
+        }
+        return;
+      }
+
+      const profileData = await profileResponse.json();
+
+      if (profileData.user) {
+        const user = profileData.user;
+        const displayName = user.profile?.displayName || user.username || 'Musician';
+        setUserName(displayName);
+        
+        setUserStats({
+          level: user.stats.level,
+          xp: user.stats.totalXP,
+          xpToNext: Math.pow(user.stats.level + 1, 2) * 100,
+          streak: user.stats.currentStreak,
+          totalHours: (user.stats.totalPracticeTime / 60).toFixed(1),
+          weeklyHours: 8.2
+        });
+      }
+
+      // Fetch recent practice sessions
+      const sessionsResponse = await fetchWithTimeout(`${API_BASE_URL}/practice-sessions/recent?limit=5`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!sessionsResponse.ok) {
+        const errorText = await sessionsResponse.text();
+        console.error("Sessions API Error Response:", errorText);
+        setError("Failed to load recent sessions.");
+        return;
+      }
+      
+      const sessionsData = await sessionsResponse.json();
+      if (sessionsData.sessions) {
+        setRecentSessions(sessionsData.sessions);
+      } else {
+        setRecentSessions([]);
+      }
+
+    } catch (err) {
+      console.error("Failed to fetch data:", err);
+      if (err.message === 'timeout') {
+        setError("Network request timed out. Please check your connection.");
+      } else {
+        setError("Could not load data. Please check your network connection.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+  
+  // ... (rest of your component remains the same)
   const renderFriendItem = ({ item }) => (
     <View style={styles.friendItem}>
       <Text style={styles.friendAvatar}>{item.avatar}</Text>
@@ -83,241 +151,131 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 
-  const renderFeedItem = ({ item }) => (
-    <View style={styles.feedItem}>
-      <View style={styles.feedHeader}>
-        <Text style={styles.feedAvatar}>{item.avatar}</Text>
-        <View style={styles.feedUserInfo}>
-          <Text style={styles.feedUserName}>{item.user}</Text>
-          <Text style={styles.feedTime}>{item.time}</Text>
-        </View>
-        <Text style={styles.feedXp}>+{item.xp} XP</Text>
-      </View>
-      <Text style={styles.feedAction}>{item.action}</Text>
-      <View style={styles.feedActions}>
-        <TouchableOpacity style={styles.feedActionButton}>
-          <Ionicons name="heart-outline" size={20} color="#A1A1A1" />
-          <Text style={styles.feedActionText}>{item.likes}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.feedActionButton}>
-          <Ionicons name="chatbubble-outline" size={20} color="#A1A1A1" />
-          <Text style={styles.feedActionText}>{item.comments}</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
-
-  const renderLeaderboardItem = ({ item, index }) => (
-    <View style={[styles.leaderboardItem, item.name === 'You' && styles.leaderboardItemYou]}>
-      <View style={styles.rankContainer}>
-        <Text style={[styles.rank, index < 3 && styles.rankTop]}>#{item.rank}</Text>
-        <Text style={styles.leaderboardAvatar}>{item.avatar}</Text>
-      </View>
-      <Text style={[styles.leaderboardName, item.name === 'You' && styles.leaderboardNameYou]}>
-        {item.name}
-      </Text>
-      <Text style={styles.leaderboardXp}>{item.xp} XP</Text>
-    </View>
-  );
-
   const renderOverview = () => (
     <ScrollView style={styles.tabContent}>
-      <View style={styles.header}>
-        <Text style={styles.greeting}>Welcome back, Musician!</Text>
+      <View style={styles.welcomeSection}>
+        <Text style={styles.greeting}>Welcome back, {userName}!</Text>
         <Text style={styles.subtitle}>Ready to practice today?</Text>
       </View>
 
-      {/* XP and Level Section */}
-      <View style={styles.xpSection}>
-        <View style={styles.levelInfo}>
-          <Text style={styles.levelText}>Level {userStats.level}</Text>
-          <Text style={styles.xpText}>{userStats.xp} / {userStats.xpToNext} XP</Text>
+      {/* Loading state indicator */}
+      {loading ? (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color="#3D9CFF" />
+          <Text style={styles.loadingText}>Loading...</Text>
         </View>
-        <View style={styles.xpBar}>
-          <View style={[styles.xpProgress, { width: `${getXpPercentage()}%` }]} />
+      ) : error ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
         </View>
-      </View>
+      ) : (
+        <>
+          {/* XP and Level Section */}
+          <View style={styles.xpSection}>
+            <View style={styles.levelInfo}>
+              <Text style={styles.levelText}>Level {userStats.level}</Text>
+              <Text style={styles.xpText}>{userStats.xp} / {userStats.xpToNext} XP</Text>
+            </View>
+            <View style={styles.xpBar}>
+              <View style={[styles.xpProgress, { width: `${getXpPercentage()}%` }]} />
+            </View>
+          </View>
 
-      {/* Streak Section */}
-      <View style={styles.streakSection}>
-        <Ionicons name="flame" size={24} color="#FF6B35" />
-        <Text style={styles.streakText}>{userStats.streak} Day Streak!</Text>
-        <Text style={styles.streakSubtext}>Keep it going!</Text>
-      </View>
+          {/* Streak Section */}
+          <View style={styles.streakSection}>
+            <Ionicons name="flame" size={24} color="#FF6B35" />
+            <Text style={styles.streakText}>{userStats.streak} Day Streak!</Text>
+            <Text style={styles.streakSubtext}>Keep it going!</Text>
+          </View>
 
-      {/* Quick Start Session */}
-      <TouchableOpacity style={styles.startButton} onPress={startSession}>
-        <Ionicons name="play-circle" size={32} color="#FFFFFF" />
-        <Text style={styles.startButtonText}>Start Practice Session</Text>
-      </TouchableOpacity>
+          {/* Quick Start Session */}
+          <TouchableOpacity style={styles.startButton} onPress={startSession}>
+            <Ionicons name="play-circle" size={32} color="#FFFFFF" />
+            <Text style={styles.startButtonText}>Start Practice Session</Text>
+          </TouchableOpacity>
 
-      {/* Stats Grid */}
-      <View style={styles.statsGrid}>
-        <View style={styles.statCard}>
-          <Text style={styles.statNumber}>{userStats.totalHours}h</Text>
-          <Text style={styles.statLabel}>Total Practice</Text>
-        </View>
-        <View style={styles.statCard}>
-          <Text style={styles.statNumber}>{userStats.weeklyHours}h</Text>
-          <Text style={styles.statLabel}>This Week</Text>
-        </View>
-      </View>
+          {/* Stats Grid */}
+          <View style={styles.statsGrid}>
+            <View style={styles.statCard}>
+              <Text style={styles.statNumber}>{userStats.totalHours}h</Text>
+              <Text style={styles.statLabel}>Total Practice</Text>
+            </View>
+            <View style={styles.statCard}>
+              <Text style={styles.statNumber}>{userStats.weeklyHours}h</Text>
+              <Text style={styles.statLabel}>This Week</Text>
+            </View>
+          </View>
 
-      {/* Recent Activity */}
+          {/* Recent Practice Sessions */}
+          <View style={styles.recentSection}>
+            <Text style={styles.sectionTitle}>Recent Sessions</Text>
+            {recentSessions.length === 0 ? (
+              <Text style={styles.activityText}>No recent sessions found. Start a new one to see it here!</Text>
+            ) : (
+              recentSessions.map(session => (
+                <View key={session._id} style={styles.activityItem}>
+                  <Ionicons name="musical-notes" size={20} color="#3D9CFF" />
+                  <Text style={styles.activityText}>
+                    {new Date(session.startTime).toLocaleDateString()}
+                    : {session.duration} min on {session.instrument}
+                  </Text>
+                </View>
+              ))
+            )}
+          </View>
+        </>
+      )}
+
+      {/* Friends Section (using mock data) */}
       <View style={styles.recentSection}>
-        <Text style={styles.sectionTitle}>Recent Activity</Text>
-        <View style={styles.activityItem}>
-          <Ionicons name="musical-notes" size={20} color="#3D9CFF" />
-          <Text style={styles.activityText}>Yesterday: 45min practice session</Text>
-        </View>
-        <View style={styles.activityItem}>
-          <Ionicons name="trophy" size={20} color="#FFD700" />
-          <Text style={styles.activityText}>Earned 150 XP</Text>
-        </View>
+        <Text style={styles.sectionTitle}>Friends</Text>
+        <FlatList
+          data={friends}
+          renderItem={renderFriendItem}
+          keyExtractor={item => item.id.toString()}
+          style={styles.list}
+          scrollEnabled={false} // Disable scrolling within the FlatList
+        />
       </View>
     </ScrollView>
   );
 
-  const renderFriends = () => (
-    <View style={styles.tabContent}>
-      <View style={styles.tabHeader}>
-        <Text style={styles.tabTitle}>Friends</Text>
-        <Text style={styles.tabSubtitle}>Connect with fellow musicians</Text>
-      </View>
-      <FlatList
-        data={friends}
-        renderItem={renderFriendItem}
-        keyExtractor={item => item.id.toString()}
-        style={styles.list}
-      />
-    </View>
-  );
-
-  const renderFeed = () => (
-    <View style={styles.tabContent}>
-      <View style={styles.tabHeader}>
-        <Text style={styles.tabTitle}>Activity Feed</Text>
-        <Text style={styles.tabSubtitle}>See what your friends are up to</Text>
-      </View>
-      <FlatList
-        data={feedPosts}
-        renderItem={renderFeedItem}
-        keyExtractor={item => item.id.toString()}
-        style={styles.list}
-      />
-    </View>
-  );
-
-  const renderLeaderboard = () => (
-    <View style={styles.tabContent}>
-      <View style={styles.tabHeader}>
-        <Text style={styles.tabTitle}>Weekly Leaderboard</Text>
-        <Text style={styles.tabSubtitle}>Compete with friends</Text>
-      </View>
-      <FlatList
-        data={leaderboardData}
-        renderItem={renderLeaderboardItem}
-        keyExtractor={(item, index) => index.toString()}
-        style={styles.list}
-      />
-    </View>
-  );
-
-  const renderActiveTab = () => {
-    switch (activeTab) {
-      case 'overview':
-        return renderOverview();
-      case 'friends':
-        return renderFriends();
-      case 'feed':
-        return renderFeed();
-      case 'leaderboard':
-        return renderLeaderboard();
-      default:
-        return renderOverview();
-    }
-  };
-
   return (
     <View style={styles.container}>
-      {/* Tabs */}
-      <View style={styles.tabs}>
-        {['overview', 'friends', 'feed', 'leaderboard'].map((tab) => (
-          <TouchableOpacity
-            key={tab}
-            style={[styles.tab, activeTab === tab && styles.activeTab]}
-            onPress={() => setActiveTab(tab)}
-          >
-            <Text style={[styles.tabText, activeTab === tab && styles.activeTabText]}>
-              {tab.charAt(0).toUpperCase() + tab.slice(1)}
-            </Text>
-          </TouchableOpacity>
-        ))}
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Home</Text>
       </View>
-
-      {/* Content */}
-      {renderActiveTab()}
+      
+      {renderOverview()}
     </View>
   );
 };
-
+// ... (your existing styles remain the same)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  tabs: {
-    flexDirection: 'row',
-    backgroundColor: '#F8F9FA',
-    paddingHorizontal: 20,
+  header: {
     paddingTop: 60,
+    paddingBottom: 20,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#E9ECEF',
   },
-  tab: {
-    flex: 1,
-    paddingVertical: 12,
-    alignItems: 'center',
-    borderBottomWidth: 2,
-    borderBottomColor: 'transparent',
-  },
-  activeTab: {
-    borderBottomColor: '#3D9CFF',
-  },
-  tabText: {
-    color: '#A1A1A1',
-    fontSize: 14,
-    fontWeight: '500',
-    fontFamily: 'Nunito-Regular',
-  },
-  activeTabText: {
-    color: '#3D9CFF',
-    fontWeight: 'bold',
-    fontFamily: 'Nunito-Bold',
-  },
-  tabContent: {
-    flex: 1,
-  },
-  tabHeader: {
-    padding: 20,
-    paddingTop: 20,
-    backgroundColor: '#F8F9FA',
-  },
-  tabTitle: {
-    fontSize: 24,
+  headerTitle: {
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#1E1E1E',
-    marginBottom: 5,
     fontFamily: 'Nunito-Bold',
   },
-  tabSubtitle: {
-    fontSize: 16,
-    color: '#7BA8D9',
-    fontFamily: 'Nunito-Regular',
+  content: {
+    flex: 1,
   },
-  header: {
+  welcomeSection: {
     padding: 20,
-    paddingTop: 20,
   },
   greeting: {
     fontSize: 28,
@@ -507,21 +465,7 @@ const styles = StyleSheet.create({
   friendItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#F8F9FA',
-    margin: 10,
-    marginTop: 5,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#E9ECEF',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
+    paddingVertical: 10,
   },
   friendAvatar: {
     fontSize: 32,
@@ -545,130 +489,25 @@ const styles = StyleSheet.create({
   addButton: {
     padding: 5,
   },
-  feedItem: {
-    backgroundColor: '#F8F9FA',
-    margin: 10,
-    marginTop: 5,
-    borderRadius: 12,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#E9ECEF',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  feedHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  feedAvatar: {
-    fontSize: 24,
-    marginRight: 10,
-  },
-  feedUserInfo: {
+  loadingContainer: {
     flex: 1,
-  },
-  feedUserName: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#1E1E1E',
-    fontFamily: 'Nunito-Bold',
-  },
-  feedTime: {
-    fontSize: 12,
-    color: '#7BA8D9',
-    fontFamily: 'Nunito-Regular',
-  },
-  feedXp: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#FFD700',
-    fontFamily: 'Nunito-Bold',
-  },
-  feedAction: {
-    fontSize: 16,
-    color: '#1E1E1E',
-    marginBottom: 15,
-    fontFamily: 'Nunito-Regular',
-  },
-  feedActions: {
-    flexDirection: 'row',
-    gap: 20,
-  },
-  feedActionButton: {
-    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    padding: 20
   },
-  feedActionText: {
-    color: '#7BA8D9',
-    marginLeft: 5,
-    fontSize: 14,
-    fontFamily: 'Nunito-Regular',
+  loadingText: {
+    marginTop: 10,
+    color: '#7BA8D9'
   },
-  leaderboardItem: {
-    flexDirection: 'row',
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#F8F9FA',
-    margin: 10,
-    marginTop: 5,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: '#E9ECEF',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
-  leaderboardItemYou: {
-    backgroundColor: '#F0F8FF',
-    borderWidth: 2,
-    borderColor: '#3D9CFF',
-  },
-  rankContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 15,
-  },
-  rank: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#7BA8D9',
-    marginRight: 10,
-    fontFamily: 'Nunito-Bold',
-  },
-  rankTop: {
-    color: '#FFD700',
-  },
-  leaderboardAvatar: {
-    fontSize: 24,
-  },
-  leaderboardName: {
-    flex: 1,
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#1E1E1E',
-    fontFamily: 'Nunito-Bold',
-  },
-  leaderboardNameYou: {
-    color: '#3D9CFF',
-  },
-  leaderboardXp: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FFD700',
-    fontFamily: 'Nunito-Bold',
-  },
+  errorText: {
+    color: 'red',
+    textAlign: 'center',
+  }
 });
-
 export default HomeScreen;
