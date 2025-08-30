@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const BACKEND_URL = process.env.EXPO_PUBLIC_API_URL
+import { BACKEND_URL } from '../../constants/api';
 
 export default function EmailRegisterScreen({ navigation, onLoginSuccess }) {
   const [email, setEmail] = useState('');

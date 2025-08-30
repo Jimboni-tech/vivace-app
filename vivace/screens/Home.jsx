@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList, ActivityIndicator, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { API_BASE_URL } from '../constants/api'; // Use the original import
 
 const getUserToken = async () => {
   try {
@@ -13,7 +13,7 @@ const getUserToken = async () => {
     return null;
   }
 };
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL
+
 const HomeScreen = ({ navigation }) => {
   const [userName, setUserName] = useState('Musician');
   const [userStats, setUserStats] = useState({
@@ -56,10 +56,7 @@ const HomeScreen = ({ navigation }) => {
   const fetchUserData = async () => {
     setLoading(true);
     setError(null);
-    
-    // --- THIS IS THE CRITICAL CHANGE ---
-    const token = await getUserToken(); // Wait for the token to be retrieved
-    // ------------------------------------
+    const token = await getUserToken();
 
     if (!token) {
       setError("Authentication failed. Please log in again.");
@@ -104,8 +101,8 @@ const HomeScreen = ({ navigation }) => {
       }
 
       // Fetch recent practice sessions
-      const sessionsResponse = await fetchWithTimeout(`${API_BASE_URL}/practice/recent?limit=5`, {
-          headers: {
+      const sessionsResponse = await fetchWithTimeout(`${API_BASE_URL}/practice-sessions/recent?limit=5`, {
+        headers: {
           Authorization: `Bearer ${token}`,
         },
       });

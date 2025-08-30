@@ -5,7 +5,7 @@ const PracticeSession = require('../models/practiceSession.js');
 const User = require('../models/user.js');
 const logger = require('../utils/logger.js');
 
-// Get all practice sessions for a user (most general)
+// Get all practice sessions for a user
 router.get('/', async (req, res) => {
   try {
     const startTime = Date.now();
@@ -48,25 +48,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Get recent practice sessions for a user (more specific)
-router.get('/recent', async (req, res) => {
-  try {
-    const limit = parseInt(req.query.limit) || 5;
-
-    const sessions = await PracticeSession.find({ user: req.user._id })
-      .sort({ startTime: -1 })
-      .limit(limit)
-      .populate('pieces.title', 'title composer')
-      .populate('exercises.name', 'name type');
-
-    res.json({ sessions });
-  } catch (error) {
-    console.error('Detailed error in /practice/recent:', error);
-    res.status(500).json({ message: 'Error retrieving practice sessions' });
-  }
-});
-
-// Get a specific practice session (general with a parameter)
+// Get a specific practice session
 router.get('/:id', async (req, res) => {
   try {
     const session = await PracticeSession.findOne({
@@ -80,7 +62,7 @@ router.get('/:id', async (req, res) => {
     
     res.json(session);
   } catch (error) {
-    console.error('Error getting practice session:', error);
+    logger.error('Error getting practice session:', error);
     res.status(500).json({ message: 'Error retrieving practice session' });
   }
 });
