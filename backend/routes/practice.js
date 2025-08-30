@@ -71,52 +71,27 @@ router.get('/:id', async (req, res) => {
 router.post('/', [
   body('instrument').notEmpty().withMessage('Instrument is required'),
   body('title').optional().isLength({ max: 100 }).withMessage('Title too long'),
-  body('pieces').optional().isArray(),
-  body('exercises').optional().isArray(),
-  body('goals').optional().isArray()
+  body('notes').optional().isString().isLength({ max: 2000 }),
+  body('recordings').optional().isArray()
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ 
-        message: 'Validation error',
-        errors: errors.array()
-      });
+      return res.status(400).json({ message: 'Validation error', errors: errors.array() });
     }
-    
-    const startTime = Date.now();
-    
     const sessionData = {
       user: req.user._id,
       instrument: req.body.instrument,
       title: req.body.title || 'Practice Session',
-      pieces: req.body.pieces || [],
-      exercises: req.body.exercises || [],
-      goals: req.body.goals || [],
-      notes: req.body.notes || {},
-      context: req.body.context || {},
-      tags: req.body.tags || []
+      notes: req.body.notes || '',
+      recordings: req.body.recordings || []
     };
-    
     const session = new PracticeSession(sessionData);
     await session.save();
-    
-    // Update user stats
     await User.findByIdAndUpdate(req.user._id, {
       $inc: { 'stats.totalSessions': 1 },
       $set: { 'stats.lastPracticeDate': new Date() }
     });
-    
-    logger.logPerformance('Create Practice Session', Date.now() - startTime, {
-      userId: req.user._id,
-      sessionId: session._id
-    });
-    
-    logger.logBusiness('Practice Session Created', req.user._id, {
-      sessionId: session._id,
-      instrument: session.instrument
-    });
-    
     res.status(201).json(session);
   } catch (error) {
     logger.error('Error creating practice session:', error);
@@ -127,33 +102,28 @@ router.post('/', [
 // Update a practice session
 router.put('/:id', [
   body('title').optional().isLength({ max: 100 }).withMessage('Title too long'),
-  body('pieces').optional().isArray(),
-  body('exercises').optional().isArray(),
-  body('goals').optional().isArray()
+  body('instrument').optional().isString(),
+  body('notes').optional().isString().isLength({ max: 2000 }),
+  body('recordings').optional().isArray()
 ], async (req, res) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ 
-        message: 'Validation error',
-        errors: errors.array()
-      });
+      return res.status(400).json({ message: 'Validation error', errors: errors.array() });
     }
-    
+    const updateFields = {};
+    if (req.body.title) updateFields.title = req.body.title;
+    if (req.body.instrument) updateFields.instrument = req.body.instrument;
+    if (req.body.notes !== undefined) updateFields.notes = req.body.notes;
+    if (req.body.recordings !== undefined) updateFields.recordings = req.body.recordings;
     const session = await PracticeSession.findOneAndUpdate(
       { _id: req.params.id, user: req.user._id },
-      { $set: req.body },
+      { $set: updateFields },
       { new: true, runValidators: true }
     );
-    
     if (!session) {
       return res.status(404).json({ message: 'Practice session not found' });
     }
-    
-    logger.logBusiness('Practice Session Updated', req.user._id, {
-      sessionId: session._id
-    });
-    
     res.json(session);
   } catch (error) {
     logger.error('Error updating practice session:', error);

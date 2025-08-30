@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const PracticeSessionBar = () => {
+const PracticeSessionBar = ({ paused, onPauseToggle }) => {
   const tools = [
     { icon: 'musical-notes' },
     { icon: 'speedometer' },
@@ -10,11 +10,37 @@ const PracticeSessionBar = () => {
     { icon: 'document-text' }
   ];
 
+  // Split tools for left/right of pause button
+  const leftTools = tools.slice(0, 2);
+  const rightTools = tools.slice(2);
+
   return (
     <View style={styles.container}>
-      {tools.map((tool, index) => (
+      {leftTools.map((tool, index) => (
         <TouchableOpacity 
-          key={index} 
+          key={tool.icon}
+          style={styles.toolButton}
+          activeOpacity={0.6}
+        >
+          <View style={styles.iconContainer}>
+            <Ionicons name={tool.icon} size={28} color="#deddddff" />
+          </View>
+        </TouchableOpacity>
+      ))}
+      <TouchableOpacity
+        style={paused ? styles.pauseButtonActive : styles.pauseButton}
+        onPress={onPauseToggle}
+        activeOpacity={0.7}
+      >
+        <Ionicons
+          name={paused ? 'play' : 'pause'}
+          size={28}
+          color={'#3D9CFF'}
+        />
+      </TouchableOpacity>
+      {rightTools.map((tool, index) => (
+        <TouchableOpacity 
+          key={tool.icon}
           style={styles.toolButton}
           activeOpacity={0.6}
         >
@@ -49,6 +75,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 5
+  },
+  pauseButton: {
+    width: 55,
+    height: 55,
+    backgroundColor: '#fff',
+    borderRadius: 27.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#3D9CFF',
+    marginLeft: 10,
+    elevation: 5
+  },
+  pauseButtonActive: {
+    width: 55,
+    height: 55,
+    backgroundColor: '#fff',
+    borderRadius: 27.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#3D9CFF',
+    marginLeft: 10,
+    elevation: 5,
+    opacity: 0.7
   }
 });
 

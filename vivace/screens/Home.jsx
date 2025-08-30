@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList, ActivityIndicator, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSession } from '../context/SessionContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_BASE_URL } from '../constants/api'; // Use the original import
+
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
 const getUserToken = async () => {
   try {
@@ -14,43 +16,58 @@ const getUserToken = async () => {
   }
 };
 
+
 const HomeScreen = ({ navigation }) => {
   const [userName, setUserName] = useState('Musician');
   const [userStats, setUserStats] = useState({
-    level: 1,
-    xp: 0,
-    xpToNext: 100,
-    streak: 0,
-    totalHours: 0,
-    weeklyHours: 0
+    streak: 0
   });
   const [recentSessions, setRecentSessions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const friends = [
-    { id: 1, name: 'Sarah', level: 8, streak: 12, avatar: '🎻' },
-    { id: 2, name: 'Mike', level: 6, streak: 5, avatar: '🎸' },
-    { id: 3, name: 'Emma', level: 10, streak: 25, avatar: '🎹' },
-    { id: 4, name: 'Alex', level: 4, streak: 3, avatar: '🥁' },
-  ];
+  const { isSessionActive, startSession } = useSession();
 
-  const startSession = () => {
-    navigation.navigate('StartSessionTab');
+  const handleStartSession = () => {
+    if (!isSessionActive) {
+      Alert.alert(
+        "Start Practice Session",
+        "Would you like to start a new practice session?",
+        [
+          {
+            text: "No",
+            style: "cancel"
+          },
+          {
+            text: "Yes",
+            onPress: () => {
+              startSession();
+              navigation.navigate('StartSessionTab');
+            }
+          }
+        ]
+      );
+    }
   };
 
-  const getXpPercentage = () => {
-    if (userStats.xpToNext <= 0) return 0;
-    return (userStats.xp / userStats.xpToNext) * 100;
-  };
 
-  const fetchWithTimeout = (url, options, timeout = 15000) => {
-    return Promise.race([
-      fetch(url, options),
-      new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('timeout')), timeout)
-      )
-    ]);
+  const fetchWithTimeout = (url, options, timeout = 30000) => {
+    console.log('Fetching from:', url);
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        console.error(`Request to ${url} timed out after ${timeout}ms`);
+        reject(new Error('timeout'));
+      }, timeout);
+      fetch(url, options)
+        .then((response) => {
+          clearTimeout(timer);
+          resolve(response);
+        })
+        .catch((err) => {
+          clearTimeout(timer);
+          reject(err);
+        });
+    });
   };
 
   const fetchUserData = async () => {
@@ -91,19 +108,15 @@ const HomeScreen = ({ navigation }) => {
         setUserName(displayName);
         
         setUserStats({
-          level: user.stats.level,
-          xp: user.stats.totalXP,
-          xpToNext: Math.pow(user.stats.level + 1, 2) * 100,
-          streak: user.stats.currentStreak,
-          totalHours: (user.stats.totalPracticeTime / 60).toFixed(1),
-          weeklyHours: 8.2
+          streak: user.stats.currentStreak
         });
       }
 
       // Fetch recent practice sessions
-      const sessionsResponse = await fetchWithTimeout(`${API_BASE_URL}/practice-sessions/recent?limit=5`, {
+      const sessionsResponse = await fetchWithTimeout(`${API_BASE_URL}/practice?limit=5`, {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
         },
       });
 
@@ -124,9 +137,14 @@ const HomeScreen = ({ navigation }) => {
     } catch (err) {
       console.error("Failed to fetch data:", err);
       if (err.message === 'timeout') {
-        setError("Network request timed out. Please check your connection.");
+        setError(`Network request timed out. Please check your connection and API server at ${API_BASE_URL}`);
+        Alert.alert(
+          "Connection Timeout",
+          `Could not connect to server at ${API_BASE_URL}. Make sure your backend server is running and accessible.`,
+          [{ text: "OK" }]
+        );
       } else {
-        setError("Could not load data. Please check your network connection.");
+        setError(`Could not load data: ${err.message}. Please check your network connection.`);
       }
     } finally {
       setLoading(false);
@@ -136,20 +154,6 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     fetchUserData();
   }, []);
-  
-  // ... (rest of your component remains the same)
-  const renderFriendItem = ({ item }) => (
-    <View style={styles.friendItem}>
-      <Text style={styles.friendAvatar}>{item.avatar}</Text>
-      <View style={styles.friendInfo}>
-        <Text style={styles.friendName}>{item.name}</Text>
-        <Text style={styles.friendStats}>Level {item.level} • {item.streak} day streak</Text>
-      </View>
-      <TouchableOpacity style={styles.addButton}>
-        <Ionicons name="add-circle" size={24} color="#3D9CFF" />
-      </TouchableOpacity>
-    </View>
-  );
 
   const renderOverview = () => (
     <ScrollView style={styles.tabContent}>
@@ -170,17 +174,6 @@ const HomeScreen = ({ navigation }) => {
         </View>
       ) : (
         <>
-          {/* XP and Level Section */}
-          <View style={styles.xpSection}>
-            <View style={styles.levelInfo}>
-              <Text style={styles.levelText}>Level {userStats.level}</Text>
-              <Text style={styles.xpText}>{userStats.xp} / {userStats.xpToNext} XP</Text>
-            </View>
-            <View style={styles.xpBar}>
-              <View style={[styles.xpProgress, { width: `${getXpPercentage()}%` }]} />
-            </View>
-          </View>
-
           {/* Streak Section */}
           <View style={styles.streakSection}>
             <Ionicons name="flame" size={24} color="#FF6B35" />
@@ -189,22 +182,10 @@ const HomeScreen = ({ navigation }) => {
           </View>
 
           {/* Quick Start Session */}
-          <TouchableOpacity style={styles.startButton} onPress={startSession}>
+          <TouchableOpacity style={styles.startButton} onPress={handleStartSession}>
             <Ionicons name="play-circle" size={32} color="#FFFFFF" />
             <Text style={styles.startButtonText}>Start Practice Session</Text>
           </TouchableOpacity>
-
-          {/* Stats Grid */}
-          <View style={styles.statsGrid}>
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{userStats.totalHours}h</Text>
-              <Text style={styles.statLabel}>Total Practice</Text>
-            </View>
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{userStats.weeklyHours}h</Text>
-              <Text style={styles.statLabel}>This Week</Text>
-            </View>
-          </View>
 
           {/* Recent Practice Sessions */}
           <View style={styles.recentSection}>
@@ -226,17 +207,7 @@ const HomeScreen = ({ navigation }) => {
         </>
       )}
 
-      {/* Friends Section (using mock data) */}
-      <View style={styles.recentSection}>
-        <Text style={styles.sectionTitle}>Friends</Text>
-        <FlatList
-          data={friends}
-          renderItem={renderFriendItem}
-          keyExtractor={item => item.id.toString()}
-          style={styles.list}
-          scrollEnabled={false} // Disable scrolling within the FlatList
-        />
-      </View>
+  
     </ScrollView>
   );
 

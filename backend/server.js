@@ -1,9 +1,9 @@
 require('dotenv').config();
 
 // Set default environment variables if not provided
-process.env.JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production';
-process.env.SESSION_SECRET = process.env.SESSION_SECRET || 'your-super-secret-session-key-change-this-in-production';
-process.env.MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/vivace';
+process.env.JWT_SECRET = process.env.JWT_SECRET;
+process.env.SESSION_SECRET = process.env.SESSION_SECRET;
+process.env.MONGO_URI = process.env.MONGO_URI;
 
 const express = require('express');
 const connectDB = require('./config/db');
@@ -34,7 +34,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: ['http://localhost:3000', 'http://localhost:8081', 'http://localhost:8082', 'http://10.175.181.44:8081', 'http://10.175.181.44:8082', 'exp://10.175.181.44:8081', 'exp://10.175.181.44:8082'],
     methods: ["GET", "POST"]
   }
 });
@@ -67,7 +67,7 @@ app.use('/api/', limiter);
 // More strict rate limiting for auth routes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // limit each IP to 5 requests per windowMs
+  max: 100, // increased from 5 to 100 for development
   message: 'Too many authentication attempts, please try again later.',
 });
 
@@ -75,7 +75,7 @@ app.use('/api/auth/', authLimiter);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: ['http://localhost:3000', 'http://localhost:8081', 'http://localhost:8082', 'http://10.175.181.44:8081', 'http://10.175.181.44:8082', 'exp://10.175.181.44:8081', 'exp://10.175.181.44:8082'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
@@ -119,11 +119,8 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// API Routes
-// Mount the userRoutes router at the correct path to handle requests
-// coming from the client, such as /api/users/practice-goals.
 app.use('/api/auth', userRoutes);
-app.use('/api/users', userRoutes); // THIS IS THE KEY FIX.
+app.use('/api/users', userRoutes); 
 app.use('/api/practice', authenticateToken, practiceRoutes);
 app.use('/api/achievements', authenticateToken, achievementRoutes);
 app.use('/api/challenges', authenticateToken, challengeRoutes);

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 
 const SessionContext = createContext();
 
@@ -12,6 +12,7 @@ export const useSession = () => {
 
 export const SessionProvider = ({ children }) => {
   const [isSessionActive, setIsSessionActive] = useState(false);
+  const [isPaused, setIsPaused] = useState(false); // New state to track if the session is paused
   const [sessionTime, setSessionTime] = useState(0);
   const [sessionXp, setSessionXp] = useState(0);
   const [sessionData, setSessionData] = useState({
@@ -33,7 +34,8 @@ export const SessionProvider = ({ children }) => {
   // Timer effect
   useEffect(() => {
     let interval = null;
-    if (isSessionActive) {
+    // The timer now runs only if the session is active AND not paused
+    if (isSessionActive && !isPaused) {
       interval = setInterval(() => {
         setSessionTime(prevTime => prevTime + 1);
       }, 1000);
@@ -41,10 +43,11 @@ export const SessionProvider = ({ children }) => {
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isSessionActive]);
+  }, [isSessionActive, isPaused]); // Now depends on both states
 
   const startSession = () => {
     setIsSessionActive(true);
+    setIsPaused(false);
     setSessionTime(0);
     setSessionXp(0);
     setActiveTool(null);
@@ -57,28 +60,16 @@ export const SessionProvider = ({ children }) => {
   };
 
   const pauseSession = () => {
-    setIsSessionActive(false);
+    setIsPaused(true);
   };
 
   const resumeSession = () => {
-    setIsSessionActive(true);
-  };
-
-  const resetSession = () => {
-    setIsSessionActive(false);
-    setSessionTime(0);
-    setSessionXp(0);
-    setActiveTool(null);
-    setSessionData({
-      startTime: null,
-      endTime: null,
-      toolsUsed: [],
-      notes: '',
-    });
+    setIsPaused(false);
   };
 
   const endSession = () => {
     setIsSessionActive(false);
+    setIsPaused(false);
     setActiveTool(null);
     setSessionData(prev => ({
       ...prev,
@@ -87,9 +78,8 @@ export const SessionProvider = ({ children }) => {
     }));
     
     // Calculate final XP and save session
-    const finalXp = sessionXp + 20; // Base + tool bonus
+    const finalXp = sessionXp + 20;
     
-    // Here you would typically save the session to your backend
     console.log('Session ended:', {
       duration: sessionTime,
       xp: finalXp,
@@ -113,6 +103,20 @@ export const SessionProvider = ({ children }) => {
     return finalXp;
   };
 
+  const resetSession = () => {
+    setIsSessionActive(false);
+    setIsPaused(false);
+    setSessionTime(0);
+    setSessionXp(0);
+    setActiveTool(null);
+    setSessionData({
+      startTime: null,
+      endTime: null,
+      toolsUsed: [],
+      notes: '',
+    });
+  };
+
   const updateSessionTime = (time) => {
     setSessionTime(time);
   };
@@ -127,7 +131,6 @@ export const SessionProvider = ({ children }) => {
         ...prev,
         toolsUsed: [...prev.toolsUsed, tool],
       }));
-      // Award XP for using tools
       setSessionXp(prev => prev + 5);
     }
   };
@@ -173,6 +176,7 @@ export const SessionProvider = ({ children }) => {
   const value = {
     // Session State
     isSessionActive,
+    isPaused, // Make sure this is exported
     sessionTime,
     sessionXp,
     sessionData,

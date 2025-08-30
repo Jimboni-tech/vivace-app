@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useSession } from '../context/SessionContext';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,9 +7,12 @@ import PracticeSessionBar from '../components/PracticeSessionBar';
 export default function StartSessionScreen({ navigation }) {
   const { 
     isSessionActive, 
+    isPaused, // Get the isPaused state from the context
     sessionTime, 
     startSession,
-    endSession
+    endSession,
+    pauseSession, // Get the pauseSession function
+    resumeSession, // Get the resumeSession function
   } = useSession();
 
   const formatTime = (seconds) => {
@@ -23,34 +26,18 @@ export default function StartSessionScreen({ navigation }) {
     navigation.navigate('HomeTab'); // Navigate back to home
   };
 
-  if (!isSessionActive) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.headerTitle}>Start Session</Text>
-        </View>
-        <View style={styles.startSessionContent}>
-          <Text style={styles.startSessionTitle}>Ready to Practice?</Text>
-          <Text style={styles.startSessionSubtitle}>
-            Tap the button below to start your session
-          </Text>
-          <TouchableOpacity 
-            style={styles.startButton} 
-            onPress={startSession}
-          >
-            <Ionicons name="play-circle" size={32} color="#FFFFFF" />
-            <Text style={styles.startButtonText}>Start Session</Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
-    );
-  }
+  const handlePauseToggle = () => {
+    if (isPaused) {
+      resumeSession();
+    } else {
+      pauseSession();
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.sessionContent}>
         <View style={styles.timerCard}>
-          <Text style={styles.timerLabel}>Session Time</Text>
           <Text style={styles.timerValue}>{formatTime(sessionTime)}</Text>
         </View>
 
@@ -63,7 +50,8 @@ export default function StartSessionScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      <PracticeSessionBar />
+      {/* Pass the state and handler from the context */}
+      <PracticeSessionBar paused={isPaused} onPauseToggle={handlePauseToggle} />
     </SafeAreaView>
   );
 }
@@ -77,21 +65,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'space-between',
-    paddingTop: 60, // Added to compensate for removed header
+    paddingTop: 60,
   },
   timerCard: {
-    backgroundColor: '#7BB9FF', // Lighter shade of blue
     padding: 30,
-    borderRadius: 25,
     alignItems: 'center',
     marginTop: 20,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
     elevation: 8,
   },
   timerLabel: {
@@ -107,7 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Bold',
   },
   stopButton: {
-    backgroundColor: '#7BB9FF', // Lighter shade of blue
+    backgroundColor: '#7BB9FF',
     paddingVertical: 20,
     paddingHorizontal: 40,
     borderRadius: 25,

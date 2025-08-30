@@ -3502,3 +3502,100 @@
   service: 'vivace-backend',
   timestamp: '2025-08-28 17:36:34'
 }
+{
+  error: Error: listen EADDRINUSE: address already in use :::3000
+      at Server.setupListenHandle [as _listen2] (node:net:1937:16)
+      at listenInCluster (node:net:1994:12)
+      at Server.listen (node:net:2099:7)
+      at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:191:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+    code: 'EADDRINUSE',
+    errno: -48,
+    syscall: 'listen',
+    address: '::',
+    port: 3000
+  },
+  level: 'error',
+  message: 'uncaughtException: listen EADDRINUSE: address already in use :::3000\n' +
+    'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:191:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  stack: 'Error: listen EADDRINUSE: address already in use :::3000\n' +
+    '    at Server.setupListenHandle [as _listen2] (node:net:1937:16)\n' +
+    '    at listenInCluster (node:net:1994:12)\n' +
+    '    at Server.listen (node:net:2099:7)\n' +
+    '    at startServer (/Users/jimmyzhou/vivace-app/backend/server.js:191:12)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)',
+  exception: true,
+  date: 'Sat Aug 30 2025 16:22:38 GMT-0400 (Eastern Daylight Time)',
+  process: {
+    pid: 63956,
+    uid: 501,
+    gid: 20,
+    cwd: '/Users/jimmyzhou/vivace-app/backend',
+    execPath: '/usr/local/bin/node',
+    version: 'v22.14.0',
+    argv: [
+      '/usr/local/bin/node',
+      '/Users/jimmyzhou/vivace-app/backend/server.js'
+    ],
+    memoryUsage: {
+      rss: 105283584,
+      heapTotal: 65355776,
+      heapUsed: 29107928,
+      external: 20648669,
+      arrayBuffers: 18281622
+    }
+  },
+  os: {
+    loadavg: [ 4.9052734375, 5.0078125, 4.74267578125 ],
+    uptime: 1230869
+  },
+  trace: [
+    {
+      column: 16,
+      file: 'node:net',
+      function: 'Server.setupListenHandle [as _listen2]',
+      line: 1937,
+      method: 'setupListenHandle [as _listen2]',
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:net',
+      function: 'listenInCluster',
+      line: 1994,
+      method: null,
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:net',
+      function: 'Server.listen',
+      line: 2099,
+      method: 'listen',
+      native: false
+    },
+    {
+      column: 12,
+      file: '/Users/jimmyzhou/vivace-app/backend/server.js',
+      function: 'startServer',
+      line: 191,
+      method: null,
+      native: false
+    },
+    {
+      column: 5,
+      file: 'node:internal/process/task_queues',
+      function: 'process.processTicksAndRejections',
+      line: 105,
+      method: 'processTicksAndRejections',
+      native: false
+    }
+  ],
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:22:38'
+}

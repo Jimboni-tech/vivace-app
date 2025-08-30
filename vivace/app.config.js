@@ -26,8 +26,5 @@ export default {
     web: {
       favicon: "./assets/vivace-icon.png"
     },
-    extra: {
-      EXPO_PUBLIC_API_URL: "http://localhost:3000/api"
-    }
   }
 };
