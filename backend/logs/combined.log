@@ -802,3 +802,493 @@
   service: 'vivace-backend',
   timestamp: '2025-08-29 21:53:28'
 }
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:56:30'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:56:30'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:56:30'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:56:35'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:56:35'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:56:35'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:59:50'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:59:50'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 21:59:50'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:00:46 +0000] "POST /api/login HTTP/1.1" 404 65 "-" "PostmanRuntime/7.43.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:00:46'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:00:53 +0000] "POST /api/auth/login HTTP/1.1" 400 39 "-" "PostmanRuntime/7.43.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:00:53'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:01:09 +0000] "POST /api/profile HTTP/1.1" 404 67 "-" "PostmanRuntime/7.43.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:01:09'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:01:14 +0000] "GET /api/profile HTTP/1.1" 404 66 "-" "PostmanRuntime/7.43.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:01:14'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:02:32 +0000] "GET /api/auth/profile HTTP/1.1" 401 43 "-" "PostmanRuntime/7.43.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:02:32'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:03:06 +0000] "GET /api/users/profile HTTP/1.1" 401 43 "-" "PostmanRuntime/7.43.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:03:06'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:03:07 +0000] "GET /api/users/profile HTTP/1.1" 401 43 "-" "PostmanRuntime/7.43.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:03:07'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:10:33 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:10:33'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:10:33 +0000] "GET /api/practice-sessions/recent?limit=5 HTTP/1.1" 404 91 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:10:33'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:11:40 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:11:40'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:11:40 +0000] "GET /api/practice-sessions/recent?limit=5 HTTP/1.1" 404 91 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:11:40'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:14:33'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:14:33'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:14:33'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:14:35 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:14:35'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:14:35 +0000] "GET /api/practice-sessions/recent?limit=5 HTTP/1.1" 404 91 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:14:35'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:15:16 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:15:16'
+}
+{
+  service: 'vivace-backend',
+  stringValue: '"recent"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: 'recent',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/bson/lib/bson.cjs:2538:23)
+      at castObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)
+      at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)
+      at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)
+      at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)
+      at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)
+      at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80),
+  valueType: 'string',
+  level: 'error',
+  message: 'Error getting practice session: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"',
+  stack: 'CastError: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"\n' +
+    '    at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:251:11)\n' +
+    '    at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)\n' +
+    '    at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)\n' +
+    '    at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)\n' +
+    '    at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)\n' +
+    '    at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)\n' +
+    '    at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)\n' +
+    '    at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async /Users/jimmyzhou/vivace-app/backend/routes/practice.js:54:21',
+  timestamp: '2025-08-29 22:15:16'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:15:16 +0000] "GET /api/practice/recent?limit=5 HTTP/1.1" 500 47 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:15:16'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:15:21 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:15:21'
+}
+{
+  service: 'vivace-backend',
+  stringValue: '"recent"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: 'recent',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/bson/lib/bson.cjs:2538:23)
+      at castObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)
+      at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)
+      at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)
+      at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)
+      at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)
+      at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80),
+  valueType: 'string',
+  level: 'error',
+  message: 'Error getting practice session: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"',
+  stack: 'CastError: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"\n' +
+    '    at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:251:11)\n' +
+    '    at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)\n' +
+    '    at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)\n' +
+    '    at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)\n' +
+    '    at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)\n' +
+    '    at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)\n' +
+    '    at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)\n' +
+    '    at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async /Users/jimmyzhou/vivace-app/backend/routes/practice.js:54:21',
+  timestamp: '2025-08-29 22:15:21'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:15:21 +0000] "GET /api/practice/recent?limit=5 HTTP/1.1" 500 47 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:15:21'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:15'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:15'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:15'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:18'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:18'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:18'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:23'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:23'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:23'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:16:27 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:27'
+}
+{
+  service: 'vivace-backend',
+  stringValue: '"recent"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: 'recent',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/bson/lib/bson.cjs:2538:23)
+      at castObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)
+      at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)
+      at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)
+      at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)
+      at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)
+      at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80),
+  valueType: 'string',
+  level: 'error',
+  message: 'Error getting practice session: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"',
+  stack: 'CastError: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"\n' +
+    '    at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:251:11)\n' +
+    '    at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)\n' +
+    '    at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)\n' +
+    '    at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)\n' +
+    '    at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)\n' +
+    '    at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)\n' +
+    '    at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)\n' +
+    '    at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async /Users/jimmyzhou/vivace-app/backend/routes/practice.js:54:21',
+  timestamp: '2025-08-29 22:16:27'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:16:27 +0000] "GET /api/practice/recent?limit=5 HTTP/1.1" 500 47 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:16:27'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:18:46'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:18:46'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:18:46'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:18:59'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:18:59'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:18:59'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:19:09 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:19:09'
+}
+{
+  service: 'vivace-backend',
+  stringValue: '"recent"',
+  messageFormat: undefined,
+  kind: 'ObjectId',
+  value: 'recent',
+  path: '_id',
+  reason: BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+      at new ObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/bson/lib/bson.cjs:2538:23)
+      at castObjectId (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast/objectid.js:25:12)
+      at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:249:12)
+      at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)
+      at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)
+      at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)
+      at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)
+      at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)
+      at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)
+      at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80),
+  valueType: 'string',
+  level: 'error',
+  message: 'Error getting practice session: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"',
+  stack: 'CastError: Cast to ObjectId failed for value "recent" (type string) at path "_id" for model "PracticeSession"\n' +
+    '    at SchemaObjectId.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schema/objectId.js:251:11)\n' +
+    '    at SchemaType.applySetters (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1258:12)\n' +
+    '    at SchemaType.castForQuery (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/schemaType.js:1694:17)\n' +
+    '    at cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/cast.js:390:32)\n' +
+    '    at Query.cast (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:5060:12)\n' +
+    '    at Query._castConditions (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2374:10)\n' +
+    '    at model.Query._findOne (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:2697:8)\n' +
+    '    at model.Query.exec (/Users/jimmyzhou/vivace-app/backend/node_modules/mongoose/lib/query.js:4627:80)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
+    '    at async /Users/jimmyzhou/vivace-app/backend/routes/practice.js:54:21',
+  timestamp: '2025-08-29 22:19:09'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:19:09 +0000] "GET /api/practice/recent?limit=5 HTTP/1.1" 500 47 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:19:09'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:40'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:40'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:40'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:41'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:41'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:41'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:45'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:45'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:45'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:20:50 +0000] "GET /api/auth/profile HTTP/1.1" 304 - "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:50'
+}
+{
+  message: '::1 - - [30/Aug/2025:02:20:50 +0000] "GET /api/practice/recent?limit=5 HTTP/1.1" 200 15 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-29 22:20:50'
+}

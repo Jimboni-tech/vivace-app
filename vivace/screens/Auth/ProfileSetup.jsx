@@ -5,11 +5,12 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Constants from 'expo-constants';
 
-const BACKEND_URL = Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL || 'http://localhost:3000/api';
+
+
 
 export default function ProfileSetupScreen({ navigation, route }) {
+  const BACKEND_URL = process.env.EXPO_PUBLIC_API_URL
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [displayName, setDisplayName] = useState('');
