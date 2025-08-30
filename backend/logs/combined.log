@@ -802,3 +802,45 @@
   service: 'vivace-backend',
   timestamp: '2025-08-29 21:53:28'
 }
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:11:51'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:11:51'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:11:51'
+}
+{
+  message: '🚀 Server running on port 3000',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:13:12'
+}
+{
+  message: '📊 Environment: 1playclarinetF!?',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:13:12'
+}
+{
+  message: '🔗 Health check: http://localhost:3000/health',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:13:12'
+}
+{
+  message: '::1 - - [30/Aug/2025:20:13:47 +0000] "POST /api/auth/login HTTP/1.1" 200 253 "-" "Expo/2.33.16 CFNetwork/3826.500.131 Darwin/24.5.0"',
+  level: 'info',
+  service: 'vivace-backend',
+  timestamp: '2025-08-30 16:13:47'
+}
