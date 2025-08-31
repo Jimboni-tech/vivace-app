@@ -56,7 +56,6 @@ export default function LoginScreen({ navigation, onLoginSuccess }) {
           console.warn('onLoginSuccess is not a function, navigating manually');
           navigation.navigate('Home');
         }
-        Alert.alert('Success', data.message);
       } else {
         setError(data.message || 'Login failed. Please try again.');
       }

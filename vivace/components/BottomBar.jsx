@@ -1,15 +1,15 @@
 import React from 'react';
 import { Alert } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useNavigation } from '@react-navigation/native'; // Add this import
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSession } from '../context/SessionContext';
 
 // Import your tab screens
 import HomeScreen from '../screens/Home';
-import StartSessionScreen from '../screens/PracticeSession';
 import ProfileScreen from '../screens/Profile';
+import PracticeStackNavigator from '../navigation/PracticeStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,8 +31,8 @@ const BottomBar = ({ onLogout }) => {
             text: "Yes",
             onPress: () => {
               startSession();
-              // Navigate before starting the session to ensure proper screen rendering
-              navigation.navigate('StartSessionTab');
+              // Navigate to the Practice tab first, then to the PracticeSession screen explicitly
+              navigation.navigate('Practice', { screen: 'PracticeSession' });
             }
           }
         ]
@@ -58,74 +58,73 @@ const BottomBar = ({ onLogout }) => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
-          if (route.name === 'HomeTab') {
+          if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'ProfileTab') {
+          } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'FriendsTab') {
+          } else if (route.name === 'Friends') {
             iconName = focused ? 'people' : 'people-outline';
-          } else if (route.name === 'StatsTab') {
+          } else if (route.name === 'Stats') {
             iconName = focused ? 'stats-chart' : 'stats-chart-outline';
           }
           return <Ionicons name={iconName} size={28} color={color} />;
         },
-        tabBarActiveTintColor: '#3D9CFF', 
-        tabBarInactiveTintColor: '#6c757d',   
+        tabBarActiveTintColor: '#3D9CFF',
+        tabBarInactiveTintColor: '#6c757d',
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',     
+          backgroundColor: '#FFFFFF',
           borderTopWidth: 1,
           borderTopColor: '#E9ECEF',
           height: 80,
-          paddingBottom: 20, // Increased from 10 to 15
+          paddingBottom: 20,
           paddingTop: 5,
           display: isSessionActive ? 'none' : 'flex',
         },
         tabBarShowLabel: false, // Hide labels
-        headerShown: false, 
+        headerShown: false,
       })}
     >
       <Tab.Screen
-        name="HomeTab"
+        name="Home"
         component={HomeScreen}
       />
       <Tab.Screen
-        name="FriendsTab"
+        name="Friends"
         component={HomeScreen}
       />
       <Tab.Screen
-        name="StartSessionTab"
-        component={StartSessionScreen}
+        name="Practice"
+        component={PracticeStackNavigator}
         options={{
           tabBarButton: (props) => (
             <SessionButton {...props}>
-              <Ionicons 
+              <Ionicons
                 name={isSessionActive ? 'pause' : 'play'}
-                size={30} 
-                color="#FFFFFF" 
+                size={30}
+                color="#FFFFFF"
               />
             </SessionButton>
           ),
         }}
       />
       <Tab.Screen
-        name="StatsTab"
+        name="Stats"
         component={HomeScreen}
       />
       <Tab.Screen
-        name="ProfileTab"
+        name="Profile"
       >
         {(props) => <ProfileScreen {...props} onLogout={onLogout} />}
       </Tab.Screen>
     </Tab.Navigator>
   );
 
-  // Show normal bottom bar (practice tools are now integrated into StartSession)
   return renderNormalBottomBar();
 };
 
 const styles = StyleSheet.create({
   sessionButtonContainer: {
-    top: -20, // Increased from -20 to -25
+    top: -20,
     justifyContent: 'center',
     alignItems: 'center',
   },

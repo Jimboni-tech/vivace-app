@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { COLORS, FONTS, SIZES } from '../constants/theme';
 
 export default function WelcomeScreen({ navigation }) {
   const [currentFeatureIndex, setCurrentFeatureIndex] = useState(0);
@@ -107,8 +108,8 @@ export default function WelcomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    padding: 20,
+    backgroundColor: COLORS.background,
+    padding: SIZES.spacing.lg,
   },
   header: {
     flex: 1,
@@ -117,14 +118,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 70,
-    color: '#1E1E1E',
+    color: COLORS.text,
     marginBottom: 0,
-    fontFamily: 'Nunito-Black',
-    fontWeight: '400',
+    ...FONTS.black,
   },
   subtitle: {
-    fontSize: 18,
-    color: '#A1A1A1',
+    fontSize: SIZES.large,
+    color: COLORS.textLight,
     textAlign: 'center',
   },
   features: {
@@ -138,39 +138,38 @@ const styles = StyleSheet.create({
     minHeight: 100, 
   },
   featureText: {
-    fontSize: 20,
+    fontSize: SIZES.large,
     color: '#7BA8D9',
     textAlign: 'center',
     lineHeight: 24,
-    fontFamily: 'Nunito-Black',
-    fontWeight: 'bold',
+    ...FONTS.black,
   },
   actions: {
     paddingBottom: 40,
   },
   loginButton: {
-    backgroundColor: '#3D9CFF',
+    backgroundColor: COLORS.primary,
     paddingVertical: 16,
-    borderRadius: 12,
-    marginBottom: 15,
+    borderRadius: SIZES.radius.md,
+    marginBottom: SIZES.spacing.md,
   },
   loginButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: COLORS.white,
+    fontSize: SIZES.large,
     textAlign: 'center',
+    ...FONTS.bold,
   },
   registerButton: {
     backgroundColor: 'transparent',
     paddingVertical: 16,
-    borderRadius: 12,
+    borderRadius: SIZES.radius.md,
     borderWidth: 2,
-    borderColor: '#3D9CFF',
+    borderColor: COLORS.primary,
   },
   registerButtonText: {
-    color: '#3D9CFF',
-    fontSize: 18,
-    fontWeight: 'bold',
+    color: COLORS.primary,
+    fontSize: SIZES.large,
     textAlign: 'center',
+    ...FONTS.bold,
   },
 });

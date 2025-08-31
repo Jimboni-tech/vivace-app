@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, FlatList, ActivityIndicator, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSession } from '../context/SessionContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
@@ -16,7 +17,6 @@ const getUserToken = async () => {
   }
 };
 
-
 const HomeScreen = ({ navigation }) => {
   const [userName, setUserName] = useState('Musician');
   const [userStats, setUserStats] = useState({
@@ -27,6 +27,23 @@ const HomeScreen = ({ navigation }) => {
   const [error, setError] = useState(null);
 
   const { isSessionActive, startSession } = useSession();
+
+  // Helper function to safely format a date
+  const formatDate = (dateString) => {
+    if (!dateString) return 'Unknown date';
+    
+    try {
+      const date = new Date(dateString);
+      // Check if date is valid
+      if (isNaN(date.getTime())) {
+        return 'Invalid date';
+      }
+      return date.toLocaleDateString();
+    } catch (error) {
+      console.error('Error formatting date:', dateString, error);
+      return 'Date error';
+    }
+  };
 
   const handleStartSession = () => {
     if (!isSessionActive) {
@@ -42,14 +59,13 @@ const HomeScreen = ({ navigation }) => {
             text: "Yes",
             onPress: () => {
               startSession();
-              navigation.navigate('StartSessionTab');
+              navigation.navigate('Practice', { screen: 'PracticeSession' });
             }
           }
         ]
       );
     }
   };
-
 
   const fetchWithTimeout = (url, options, timeout = 30000) => {
     console.log('Fetching from:', url);
@@ -129,6 +145,7 @@ const HomeScreen = ({ navigation }) => {
       
       const sessionsData = await sessionsResponse.json();
       if (sessionsData.sessions) {
+        console.log('Sessions data received:', JSON.stringify(sessionsData.sessions, null, 2));
         setRecentSessions(sessionsData.sessions);
       } else {
         setRecentSessions([]);
@@ -151,9 +168,16 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+  // Use useFocusEffect to refresh data when the screen comes into focus
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log('Home screen focused - refreshing data');
+      fetchUserData();
+      return () => {
+        // Cleanup function if needed
+      };
+    }, [])
+  );
 
   const renderOverview = () => (
     <ScrollView style={styles.tabContent}>
@@ -197,8 +221,8 @@ const HomeScreen = ({ navigation }) => {
                 <View key={session._id} style={styles.activityItem}>
                   <Ionicons name="musical-notes" size={20} color="#3D9CFF" />
                   <Text style={styles.activityText}>
-                    {new Date(session.startTime).toLocaleDateString()}
-                    : {session.duration} min on {session.instrument}
+                    {formatDate(session.startTime || session.date || session.createdAt || session.updatedAt)}
+                    : {session.duration ? Math.floor(session.duration / 60) : 0} min
                   </Text>
                 </View>
               ))
@@ -206,8 +230,6 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </>
       )}
-
-  
     </ScrollView>
   );
 
@@ -222,7 +244,7 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
-// ... (your existing styles remain the same)
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -479,6 +501,10 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     textAlign: 'center',
+  },
+  tabContent: {
+    flex: 1,
   }
 });
+
 export default HomeScreen;
