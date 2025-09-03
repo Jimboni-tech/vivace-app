@@ -146,7 +146,8 @@ export const SessionProvider = ({ children }) => {
       duration: sessionTime, // duration in seconds, from timer
       date: new Date(),
       endTime: updatedSessionData.endTime || new Date(),
-      startTime: updatedSessionData.startTime || sessionData.startTime || null
+      startTime: updatedSessionData.startTime || sessionData.startTime || null,
+      status: 'completed' // Explicitly set status to completed
     };
     
     const API_URL = process.env.EXPO_PUBLIC_API_URL;
@@ -156,45 +157,153 @@ export const SessionProvider = ({ children }) => {
         token = await AsyncStorage.getItem('token');
       }
       
-      let url = `${API_URL}/practice`;
-      let method = 'POST';
-      
-      // If we have a session ID, update the existing session instead of creating a new one
-      if (sessionId) {
-        url = `${API_URL}/practice/${sessionId}`;
-        method = 'PUT';
+      // If no token, we can't proceed
+      if (!token) {
+        throw new Error('No authentication token found');
       }
       
-      const response = await fetch(url, {
-        method: method,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { Authorization: `Bearer ${token}` } : {})
-        },
-        body: JSON.stringify(sessionToSave)
-      });
+      let sessionData;
       
-      if (response.ok) {
-        console.log('Practice session saved successfully!');
-        // Clear the active session ID
-        await AsyncStorage.removeItem('activeSessionId');
-        
-        // Reset session state
-        setSessionTime(0);
-        setSessionXp(0);
-        setSessionNotes('');
-        setSessionData({
-          startTime: null,
-          endTime: null,
-          toolsUsed: [],
-          notes: '',
+      // If we have a session ID, we'll try to complete it directly first
+      if (sessionId) {
+        try {
+          console.log('Attempting to complete session directly:', sessionId);
+          
+          const completeResponse = await fetch(`${API_URL}/practice/${sessionId}/complete`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              endTime: updatedSessionData.endTime || new Date(),
+              duration: sessionTime,
+              notes: sessionToSave.notes,
+              title: sessionToSave.title
+            })
+          });
+          
+          if (completeResponse.ok) {
+            sessionData = await completeResponse.json();
+            console.log('Session completed successfully via complete endpoint!', sessionData);
+            
+            // No need to do the PUT update since we've successfully completed
+            return sessionData; // Return the complete response with XP info
+          } else {
+            const errorText = await completeResponse.text();
+            console.warn('Could not complete session directly, will try updating first:', errorText);
+            
+            // If completion fails, we'll fall back to the old approach
+            // Update the session first, then try to complete it
+            let url = `${API_URL}/practice/${sessionId}`;
+            const updateResponse = await fetch(url, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+              },
+              body: JSON.stringify(sessionToSave)
+            });
+            
+            if (!updateResponse.ok) {
+              throw new Error(`Failed to update session: ${await updateResponse.text()}`);
+            }
+            
+            sessionData = await updateResponse.json();
+            console.log('Session updated successfully, now trying to complete');
+            
+            // Now try to complete it again
+            const secondCompleteResponse = await fetch(`${API_URL}/practice/${sessionId}/complete`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                endTime: updatedSessionData.endTime || new Date(),
+                duration: sessionTime
+              })
+            });
+            
+            if (secondCompleteResponse.ok) {
+              const completeData = await secondCompleteResponse.json();
+              console.log('Session completed successfully after update!', completeData);
+              sessionData = completeData;
+              return completeData; // Return with XP info
+            } else {
+              console.warn('Could not complete session after update:', await secondCompleteResponse.text());
+              // We'll continue with the session data from the update
+            }
+          }
+        } catch (completeError) {
+          console.error('Error in completion process:', completeError);
+          throw completeError;
+        }
+      } else {
+        // Create a new session directly as completed
+        console.log('Creating new completed session');
+        const createResponse = await fetch(`${API_URL}/practice`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify(sessionToSave)
         });
         
-        return await response.json();
-      } else {
-        console.error('Failed to save session:', await response.text());
-        throw new Error('Failed to save session');
+        if (!createResponse.ok) {
+          throw new Error(`Failed to create session: ${await createResponse.text()}`);
+        }
+        
+        sessionData = await createResponse.json();
+        console.log('New session created successfully:', sessionData);
+        
+        // Now try to complete it
+        if (sessionData._id) {
+          try {
+            const completeResponse = await fetch(`${API_URL}/practice/${sessionData._id}/complete`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                endTime: updatedSessionData.endTime || new Date(),
+                duration: sessionTime
+              })
+            });
+            
+            if (completeResponse.ok) {
+              const completeData = await completeResponse.json();
+              console.log('New session completed successfully!', completeData);
+              sessionData = completeData;
+              return completeData; // Return with XP info
+            } else {
+              console.warn('Could not complete new session:', await completeResponse.text());
+              // We'll continue with the session data from the creation
+            }
+          } catch (completeError) {
+            console.warn('Error completing new session:', completeError);
+            // Continue with the created session data
+          }
+        }
       }
+      
+      // Clean up session state
+      console.log('Cleaning up session state');
+      await AsyncStorage.removeItem('activeSessionId');
+      
+      setSessionTime(0);
+      setSessionXp(0);
+      setSessionNotes('');
+      setSessionData({
+        startTime: null,
+        endTime: null,
+        toolsUsed: [],
+        notes: '',
+      });
+      
+      return sessionData;
     } catch (e) {
       console.error('Failed to save session:', e);
       throw e;
@@ -216,10 +325,36 @@ export const SessionProvider = ({ children }) => {
     });
     
     try {
+      // Get the active session ID and delete it from the database
+      const sessionId = await AsyncStorage.getItem('activeSessionId');
+      
+      if (sessionId) {
+        const API_URL = process.env.EXPO_PUBLIC_API_URL;
+        const token = await AsyncStorage.getItem('userToken') || await AsyncStorage.getItem('token');
+        
+        if (token) {
+          console.log('Deleting cancelled session:', sessionId);
+          
+          // Delete the session from the database
+          const deleteResponse = await fetch(`${API_URL}/practice/${sessionId}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          
+          if (deleteResponse.ok) {
+            console.log('Cancelled session deleted successfully');
+          } else {
+            console.error('Failed to delete cancelled session:', await deleteResponse.text());
+          }
+        }
+      }
+      
       // Clean up by removing the active session ID
       await AsyncStorage.removeItem('activeSessionId');
     } catch (error) {
-      console.error('Error removing active session ID:', error);
+      console.error('Error during session reset:', error);
     }
   };
 

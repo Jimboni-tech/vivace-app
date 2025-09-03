@@ -6,8 +6,9 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
+import { DEFAULT_THEME, SIZES, FONTS } from '../../constants/theme';
 
-const BACKEND_URL = Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL || 'http://localhost:3000/api';
+const BACKEND_URL = Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL;
 
 export default function ProfileSetupScreen({ navigation, route }) {
   const [firstName, setFirstName] = useState('');
@@ -97,7 +98,7 @@ export default function ProfileSetupScreen({ navigation, route }) {
                 style={styles.backButton}
                 onPress={() => navigation.goBack()}
               >
-                <Ionicons name="arrow-back" size={24} color="#1E1E1E" />
+                <Ionicons name="arrow-back" size={24} color={DEFAULT_THEME.common.text} />
               </TouchableOpacity>
               <Text style={styles.title}>Tell Us About Yourself</Text>
               <Text style={styles.subtitle}>Let's personalize your experience</Text>
@@ -105,11 +106,11 @@ export default function ProfileSetupScreen({ navigation, route }) {
 
             <View style={styles.form}>
               <View style={styles.inputContainer}>
-                <Ionicons name="person-outline" size={20} color="#7BA8D9" />
+                <Ionicons name="person-outline" size={20} color={DEFAULT_THEME.button.primaryBackground} />
                 <TextInput
                   style={styles.input}
                   placeholder="First Name"
-                  placeholderTextColor="#A1A1A1"
+                  placeholderTextColor={DEFAULT_THEME.input.placeholder}
                   value={firstName}
                   onChangeText={setFirstName}
                   autoCapitalize="words"
@@ -122,11 +123,11 @@ export default function ProfileSetupScreen({ navigation, route }) {
               ) : null}
 
               <View style={styles.inputContainer}>
-                <Ionicons name="person-outline" size={20} color="#7BA8D9" />
+                <Ionicons name="person-outline" size={20} color={DEFAULT_THEME.button.primaryBackground} />
                 <TextInput
                   style={styles.input}
                   placeholder="Last Name"
-                  placeholderTextColor="#A1A1A1"
+                  placeholderTextColor={DEFAULT_THEME.input.placeholder}
                   value={lastName}
                   onChangeText={setLastName}
                   autoCapitalize="words"
@@ -139,11 +140,11 @@ export default function ProfileSetupScreen({ navigation, route }) {
               ) : null}
 
               <View style={styles.inputContainer}>
-                <Ionicons name="at-outline" size={20} color="#7BA8D9" />
+                <Ionicons name="at-outline" size={20} color={DEFAULT_THEME.button.primaryBackground} />
                 <TextInput
                   style={styles.input}
                   placeholder="Display Name"
-                  placeholderTextColor="#A1A1A1"
+                  placeholderTextColor={DEFAULT_THEME.input.placeholder}
                   value={displayName}
                   onChangeText={setDisplayName}
                   autoCapitalize="words"
@@ -161,11 +162,11 @@ export default function ProfileSetupScreen({ navigation, route }) {
                 disabled={loading}
               >
                 {loading ? (
-                  <ActivityIndicator color="#FFFFFF" />
+                  <ActivityIndicator color={DEFAULT_THEME.button.primaryText} />
                 ) : (
                   <>
                     <Text style={styles.nextButtonText}>Next</Text>
-                    <Ionicons name="arrow-forward" size={20} color="#FFFFFF" />
+                    <Ionicons name="arrow-forward" size={20} color={DEFAULT_THEME.button.primaryText} />
                   </>
                 )}
               </TouchableOpacity>
@@ -180,7 +181,7 @@ export default function ProfileSetupScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: DEFAULT_THEME.common.background,
   },
   keyboardAvoidingView: {
     flex: 1,
@@ -193,37 +194,33 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    padding: 20,
+    backgroundColor: DEFAULT_THEME.common.background,
+    padding: SIZES.spacing.lg,
   },
   header: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: 20,
+    paddingTop: SIZES.spacing.lg,
     minHeight: 200,
   },
   backButton: {
     position: 'absolute',
-    top: 20,
+    top: SIZES.spacing.lg,
     left: 0,
-    padding: 10,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 20,
+    padding: SIZES.spacing.md,
+    backgroundColor: DEFAULT_THEME.input.background,
+    borderRadius: SIZES.radius.round / 2,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1E1E1E',
-    marginBottom: 10,
+    ...FONTS.h1,
+    color: DEFAULT_THEME.common.text,
+    marginBottom: SIZES.spacing.md,
     textAlign: 'center',
-    fontFamily: 'Nunito-Black',
   },
   subtitle: {
-    fontSize: 16,
-    color: '#7BA8D9',
+    ...FONTS.body1,
+    color: DEFAULT_THEME.button.primaryBackground,
     textAlign: 'center',
-    lineHeight: 24,
-    fontFamily: 'Nunito-Regular',
   },
   form: {
     flex: 1,
@@ -233,13 +230,13 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F8F9FA',
-    borderRadius: 12,
-    paddingHorizontal: 15,
-    marginBottom: 15,
+    backgroundColor: DEFAULT_THEME.input.background,
+    borderRadius: SIZES.radius.md,
+    paddingHorizontal: SIZES.spacing.md,
+    marginBottom: SIZES.spacing.md,
     borderWidth: 1,
-    borderColor: '#E9ECEF',
-    shadowColor: '#000',
+    borderColor: DEFAULT_THEME.input.border,
+    shadowColor: DEFAULT_THEME.common.shadow,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -250,28 +247,28 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    paddingVertical: 15,
-    paddingHorizontal: 15,
-    color: '#1E1E1E',
-    fontSize: 16,
-    fontFamily: 'Nunito-Regular',
+    paddingVertical: SIZES.spacing.md,
+    paddingHorizontal: SIZES.spacing.md,
+    color: DEFAULT_THEME.input.text,
+    fontSize: SIZES.medium,
+    ...FONTS.regular,
   },
   errorText: {
-    color: '#FF4444',
-    fontSize: 14,
-    marginBottom: 15,
-    marginLeft: 15,
-    fontFamily: 'Nunito-Regular',
+    color: DEFAULT_THEME.status.error.text,
+    fontSize: SIZES.small,
+    marginBottom: SIZES.spacing.md,
+    marginLeft: SIZES.spacing.md,
+    ...FONTS.regular,
   },
   nextButton: {
-    backgroundColor: '#3D9CFF',
-    paddingVertical: 16,
-    borderRadius: 12,
-    marginTop: 20,
+    backgroundColor: DEFAULT_THEME.button.primaryBackground,
+    paddingVertical: SIZES.spacing.md,
+    borderRadius: SIZES.radius.md,
+    marginTop: SIZES.spacing.lg,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#3D9CFF',
+    shadowColor: DEFAULT_THEME.button.primaryBackground,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -281,10 +278,9 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   nextButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginRight: 10,
-    fontFamily: 'Nunito-Bold',
+    color: DEFAULT_THEME.button.primaryText,
+    fontSize: SIZES.large,
+    marginRight: SIZES.spacing.sm,
+    ...FONTS.button,
   },
 });

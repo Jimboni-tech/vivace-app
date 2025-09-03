@@ -4,6 +4,7 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import TunerForkIcon from '../assets/tunerfork.svg';
+import { DEFAULT_THEME, BASE_COLORS } from '../constants/theme';
 
 const PracticeSessionBar = ({ paused, onPauseToggle, onTunerPress, onMetronomePress, onRecordingPress, onNotesPress }) => {
 
@@ -41,12 +42,12 @@ const PracticeSessionBar = ({ paused, onPauseToggle, onTunerPress, onMetronomePr
 
   const renderIcon = (tool) => {
     if (tool.type === 'custom' && tool.icon === 'tunerfork') {
-      return <TunerForkIcon width={28} height={28} fill="#eceaeaff" />;
+      return <TunerForkIcon width={28} height={28} fill={BASE_COLORS.white} />;
     }
     if (tool.type === 'material') {
-      return <MaterialCommunityIcons name={tool.icon} size={28} color="#eceaeaff" />;
+      return <MaterialCommunityIcons name={tool.icon} size={28} color={BASE_COLORS.white} />;
     }
-    return <Ionicons name={tool.icon} size={28} color="#eceaeaff" />;
+    return <Ionicons name={tool.icon} size={28} color={BASE_COLORS.white} />;
   };
 
   return (
@@ -71,7 +72,7 @@ const PracticeSessionBar = ({ paused, onPauseToggle, onTunerPress, onMetronomePr
         <Ionicons
           name={paused ? 'play' : 'pause'}
           size={28}
-          color={'#3D9CFF'}
+          color={DEFAULT_THEME.button.primaryBackground}
         />
       </TouchableOpacity>
       {rightTools.map((tool, index) => (
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: '#3D9CFF',
+    backgroundColor: DEFAULT_THEME.practiceSession.background,
     height: 90,
     paddingBottom: 20,
     paddingTop: 10,
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 55,
     height: 55,
-    backgroundColor: '#5da8f8ff',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 27.5,
     justifyContent: 'center',
     alignItems: 'center',
@@ -116,24 +117,24 @@ const styles = StyleSheet.create({
   pauseButton: {
     width: 55,
     height: 55,
-    backgroundColor: '#fff',
+    backgroundColor: BASE_COLORS.white,
     borderRadius: 27.5,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: '#3D9CFF',
+    borderColor: DEFAULT_THEME.practiceSession.background,
     marginLeft: 10,
     elevation: 5
   },
   pauseButtonActive: {
     width: 55,
     height: 55,
-    backgroundColor: '#fff',
+    backgroundColor: BASE_COLORS.white,
     borderRadius: 27.5,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor: '#3D9CFF',
+    borderColor: DEFAULT_THEME.practiceSession.background,
     marginLeft: 10,
     elevation: 5,
     opacity: 0.7

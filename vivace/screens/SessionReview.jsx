@@ -9,12 +9,15 @@ import {
   Alert,
   ActivityIndicator,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  FlatList
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSession } from '../context/SessionContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { API_BASE_URL } from '../constants/api';
+import EnhancedAddSongModal from '../components/EnhancedAddPieceModal';
+import PiecesList from '../components/PiecesList';
+import { sessionApi } from '../utils/apiClient';
 
 const SessionReview = ({ navigation, route }) => {
   const { 
@@ -37,6 +40,13 @@ const SessionReview = ({ navigation, route }) => {
   // Check if we're coming from the practice session
   const fromPractice = route.params?.fromPractice || false;
 
+  // State for session songs/exercises
+  const [sessionId, setSessionId] = useState(null);
+  const [songs, setSongs] = useState([]);
+  const [showAddPieceModal, setShowAddPieceModal] = useState(false);
+  const [addType, setAddType] = useState(null); // 'song' or 'exercise'
+  const [refreshing, setRefreshing] = useState(false);
+
   // Format session duration for display
   const formatDuration = (seconds) => {
     if (!seconds) return '0m';
@@ -45,6 +55,15 @@ const SessionReview = ({ navigation, route }) => {
     return `${minutes}m ${remainingSeconds}s`;
   };
   
+  // State for XP information
+  const [xpInfo, setXpInfo] = useState({
+    xpGained: 0,
+    leveledUp: false,
+    newLevel: 0,
+    oldLevel: 0,
+    showXpMessage: false
+  });
+  
   // Use effect to ensure notes are updated if sessionNotes changes
   useEffect(() => {
     // Only update notes if they haven't been edited yet
@@ -52,6 +71,92 @@ const SessionReview = ({ navigation, route }) => {
       setNotes(notesFromPractice || sessionNotes || '');
     }
   }, [notesFromPractice, sessionNotes]);
+
+  // Load the active session ID and fetch songs if we're in a session
+  useEffect(() => {
+    const loadSessionData = async () => {
+      try {
+        // Get the active session ID
+        const activeSessionId = await AsyncStorage.getItem('activeSessionId');
+        if (activeSessionId) {
+          setSessionId(activeSessionId);
+          // Fetch the session data to get songs
+          const sessionResponse = await sessionApi.getSession(activeSessionId);
+          if (sessionResponse && sessionResponse.songs) {
+            setSongs(sessionResponse.songs);
+          }
+        }
+      } catch (err) {
+        console.error('Error loading session data:', err);
+      }
+    };
+    loadSessionData();
+  }, []);
+
+  const handleSongAdded = (updatedSession) => {
+    // Update local songs state with the updated session
+    if (updatedSession && updatedSession.songs) {
+      setSongs(updatedSession.songs);
+    }
+  };
+
+  const handleAddPiecePress = () => {
+    if (!sessionId) {
+      // If no session, create one first, then open the modal
+      (async () => {
+        try {
+          setLoading(true);
+          const newSession = await sessionApi.createSession({
+            title,
+            notes,
+            startTime: new Date(),
+          });
+          if (newSession && newSession._id) {
+            await AsyncStorage.setItem('activeSessionId', newSession._id);
+            setSessionId(newSession._id);
+            setAddType(null); // Let the modal handle type selection
+            setShowAddPieceModal(true);
+          }
+        } catch (error) {
+          console.error('Error creating session:', error);
+          Alert.alert('Error', 'Failed to create a new session. Please try again.');
+        } finally {
+          setLoading(false);
+        }
+      })();
+    } else {
+      setAddType(null); // Let the modal handle type selection
+      setShowAddPieceModal(true);
+    }
+  };
+
+  const handlePiecePress = (piece) => {
+    // Show piece details
+    Alert.alert(
+      piece.title,
+      `Type: ${piece.type}${piece.composer ? `\nComposer: ${piece.composer}` : ''}${piece.timeSpent ? `\nTime spent: ${formatDuration(piece.timeSpent)}` : ''}${piece.notes ? `\n\nNotes: ${piece.notes}` : ''}`
+    );
+  };
+  
+  const handleDeleteSong = async (song, index) => {
+    if (!sessionId || !song._id) {
+      Alert.alert('Error', 'Cannot delete this item. Missing required information.');
+      return;
+    }
+    try {
+      setLoading(true);
+      // Call the API to delete the song
+      await sessionApi.deletePiece(sessionId, song._id); // TODO: rename to deleteSong in apiClient
+      // Update the local state by removing the deleted song
+      const updatedSongs = songs.filter((_, i) => i !== index);
+      setSongs(updatedSongs);
+    } catch (error) {
+      console.error('Error deleting song:', error);
+      Alert.alert('Error', 'Failed to delete the item. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSaveSession = async () => {
     try {
@@ -69,9 +174,12 @@ const SessionReview = ({ navigation, route }) => {
       const updatedSession = {
         ...sessionData,
         title,
-        notes
+        notes,
+        status: 'completed' // Explicitly mark as completed
       };
 
+      let response;
+      
       // If we came from practice session, we need to properly end it first
       if (fromPractice) {
         // First update the session notes to ensure they're included in endSession
@@ -84,24 +192,70 @@ const SessionReview = ({ navigation, route }) => {
         const finalSessionData = {
           ...endedSessionData,
           title,
-          notes
+          notes,
+          status: 'completed' // Explicitly mark as completed
         };
         
         // Save the merged session data
-        await endSessionAndSave(finalSessionData);
+        response = await endSessionAndSave(finalSessionData);
       } else {
         // Just save the updated session
-        await endSessionAndSave(updatedSession);
+        response = await endSessionAndSave(updatedSession);
       }
       
-      // Navigate to home tab
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Home' }],
-      });
-    } catch (err) {
-      console.error('Error saving session:', err);
-      setError('Failed to save session. Please try again.');
+      // Helper to update streak and navigate home
+      const updateStreakAndNavigate = async () => {
+        try {
+          const token = await AsyncStorage.getItem('userToken');
+          if (token) {
+            await fetch(`${process.env.EXPO_PUBLIC_API_URL}/users/streak/recalculate`, {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              }
+            });
+          }
+        } catch (e) {
+          // Ignore errors, Home will still try to update
+        } finally {
+          navigation.navigate('Home');
+        }
+      };
+
+      // Check if XP was awarded
+      if (response && response.xpGained) {
+        setXpInfo({
+          xpGained: response.xpGained,
+          leveledUp: response.leveledUp || false,
+          newLevel: response.newLevel || 0,
+          oldLevel: response.oldLevel || 0,
+          showXpMessage: true
+        });
+        if (response.leveledUp) {
+          Alert.alert(
+            'Level Up!',
+            `You've earned ${response.xpGained} XP and leveled up to Level ${response.newLevel}!`,
+            [{ text: 'Awesome!', onPress: updateStreakAndNavigate }]
+          );
+        } else {
+          Alert.alert(
+            'Session Saved',
+            `You've earned ${response.xpGained} XP for this practice session!`,
+            [{ text: 'Great!', onPress: updateStreakAndNavigate }]
+          );
+        }
+      } else {
+        // Standard success message
+        Alert.alert(
+          'Session Saved',
+          'Your practice session has been saved successfully.',
+          [{ text: 'OK', onPress: updateStreakAndNavigate }]
+        );
+      }
+    } catch (error) {
+      console.error('Error saving session:', error);
+      setError('Failed to save your session. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -147,109 +301,144 @@ const SessionReview = ({ navigation, route }) => {
             ) : (
               <>
                 <Text style={styles.saveButtonText}>Save</Text>
-
               </>
             )}
           </TouchableOpacity>
         </View>
       </View>
 
-      <ScrollView style={styles.content}>
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Ionicons name="information-circle-outline" size={22} color="#3D9CFF" />
-            <Text style={styles.sectionTitle}>Session Details</Text>
-          </View>
-          
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Session Title</Text>
-            <TextInput
-              style={styles.titleInput}
-              value={title}
-              onChangeText={setTitle}
-              placeholder="Enter a meaningful title for your session"
-              placeholderTextColor="#A0AEC0"
-              maxLength={100}
-            />
-          </View>
-
-          <View style={styles.detailsContainer}>
-            <View style={styles.detailItem}>
-              <View style={styles.detailIconContainer}>
-                <Ionicons name="time-outline" size={20} color="white" />
+      <FlatList
+        data={[]}
+        ListHeaderComponent={
+          <>
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Ionicons name="information-circle-outline" size={22} color="#3D9CFF" />
+                <Text style={styles.sectionTitle}>Session Details</Text>
               </View>
-              <View>
-                <Text style={styles.detailLabel}>Duration</Text>
-                <Text style={styles.detailValue}>
-                  {formatDuration(sessionData?.duration)}
-                </Text>
+              <View style={styles.inputContainer}>
+                <Text style={styles.label}>Session Title</Text>
+                <TextInput
+                  style={styles.titleInput}
+                  value={title}
+                  onChangeText={setTitle}
+                  placeholder="Enter a meaningful title for your session"
+                  placeholderTextColor="#A0AEC0"
+                  maxLength={100}
+                />
               </View>
-            </View>
-            
-            <View style={styles.detailItem}>
-              <View style={styles.detailIconContainer}>
-                <Ionicons name="calendar-outline" size={20} color="white" />
-              </View>
-              <View>
-                <Text style={styles.detailLabel}>Date</Text>
-                <Text style={styles.detailValue}>
-                  {new Date().toLocaleDateString()}
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <View style={styles.sectionHeader}>
-            <Ionicons name="create-outline" size={22} color="#3D9CFF" />
-            <Text style={styles.sectionTitle}>Practice Notes</Text>
-          </View>
-          
-          <TextInput
-            style={styles.notesInput}
-            value={notes}
-            onChangeText={setNotes}
-            placeholder="Write your notes here!"
-            placeholderTextColor="#A0AEC0"
-            multiline
-            textAlignVertical="top"
-            maxLength={2000}
-          />
-          <Text style={styles.charCount}>{notes.length}/2000</Text>
-        </View>
-
-        {sessionData?.recordings && sessionData.recordings.length > 0 && (
-          <View style={styles.section}>
-            <View style={styles.sectionHeader}>
-              <Ionicons name="musical-notes-outline" size={22} color="#3D9CFF" />
-              <Text style={styles.sectionTitle}>Recordings</Text>
-            </View>
-            
-            <View style={styles.recordingsContainer}>
-              {sessionData.recordings.map((recording, index) => (
-                <View key={index} style={styles.recordingItem}>
-                  <View style={styles.recordingIconContainer}>
-                    <Ionicons name="musical-note" size={18} color="white" />
+              <View style={styles.detailsContainer}>
+                <View style={styles.detailItem}>
+                  <View style={styles.detailIconContainer}>
+                    <Ionicons name="time-outline" size={20} color="white" />
                   </View>
                   <View>
-                    <Text style={styles.recordingTitle}>Recording {index + 1}</Text>
-                    <Text style={styles.recordingText}>
-                      {formatDuration(recording.duration)}
+                    <Text style={styles.detailLabel}>Duration</Text>
+                    <Text style={styles.detailValue}>
+                      {formatDuration(sessionData?.duration)}
                     </Text>
                   </View>
                 </View>
-              ))}
+                <View style={styles.detailItem}>
+                  <View style={styles.detailIconContainer}>
+                    <Ionicons name="calendar-outline" size={20} color="white" />
+                  </View>
+                  <View>
+                    <Text style={styles.detailLabel}>Date</Text>
+                    <Text style={styles.detailValue}>
+                      {new Date().toLocaleDateString()}
+                    </Text>
+                  </View>
+                </View>
+              </View>
             </View>
-          </View>
-        )}
-
-        {error && (
-          <View style={styles.errorContainer}>
-            <Text style={styles.errorText}>{error}</Text>
-          </View>
-        )}
-      </ScrollView>
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Ionicons name="create-outline" size={22} color="#3D9CFF" />
+                <Text style={styles.sectionTitle}>Practice Notes</Text>
+              </View>
+              <TextInput
+                style={styles.notesInput}
+                value={notes}
+                onChangeText={setNotes}
+                placeholder="Write your notes here!"
+                placeholderTextColor="#A0AEC0"
+                multiline
+                textAlignVertical="top"
+                maxLength={2000}
+              />
+              <Text style={styles.charCount}>{notes.length}/2000</Text>
+            </View>
+            <View style={styles.section}>
+              <View style={styles.sectionHeader}>
+                <Ionicons name="musical-notes-outline" size={22} color="#3D9CFF" />
+                <Text style={styles.sectionTitle}>Songs & Exercises</Text>
+              </View>
+              <View style={styles.piecesContainer}>
+                {songs.length > 0 ? (
+                  <PiecesList 
+                    pieces={songs} 
+                    onPressItem={handlePiecePress}
+                    onDeleteItem={handleDeleteSong}
+                    showType
+                  />
+                ) : (
+                  <Text style={styles.emptyMessage}>
+                    No songs or exercises added yet. Add what you practiced!
+                  </Text>
+                )}
+                <TouchableOpacity 
+                  style={styles.addButton}
+                  onPress={handleAddPiecePress}
+                >
+                  <Ionicons name="add-circle-outline" size={20} color="white" />
+                  <Text style={styles.addButtonText}>Add Song or Exercise</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+            {sessionData?.recordings && sessionData.recordings.length > 0 && (
+              <View style={styles.section}>
+                <View style={styles.sectionHeader}>
+                  <Ionicons name="musical-notes-outline" size={22} color="#3D9CFF" />
+                  <Text style={styles.sectionTitle}>Recordings</Text>
+                </View>
+                <View style={styles.recordingsContainer}>
+                  {sessionData.recordings.map((recording, index) => (
+                    <View key={index} style={styles.recordingItem}>
+                      <View style={styles.recordingIconContainer}>
+                        <Ionicons name="musical-note" size={18} color="white" />
+                      </View>
+                      <View>
+                        <Text style={styles.recordingTitle}>Recording {index + 1}</Text>
+                        <Text style={styles.recordingText}>
+                          {formatDuration(recording.duration)}
+                        </Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
+            {error && (
+              <View style={styles.errorContainer}>
+                <Text style={styles.errorText}>{error}</Text>
+              </View>
+            )}
+          </>
+        }
+        style={styles.content}
+        contentContainerStyle={{ paddingBottom: 40 }}
+        keyboardShouldPersistTaps="handled"
+      />
+      
+      {/* Enhanced Add Piece Modal */}
+      <EnhancedAddSongModal
+        visible={showAddPieceModal}
+        onClose={() => setShowAddPieceModal(false)}
+        onSongAdded={handleSongAdded}
+        sessionId={sessionId}
+        addType={addType}
+      />
     </KeyboardAvoidingView>
   );
 };
@@ -341,6 +530,33 @@ const styles = StyleSheet.create({
     color: '#718096',
     marginTop: 8,
     fontFamily: 'Nunito-Regular',
+  },
+  piecesContainer: {
+    marginBottom: 10,
+  },
+  emptyMessage: {
+    color: '#A0AEC0',
+    fontSize: 16,
+    fontStyle: 'italic',
+    textAlign: 'center',
+    marginVertical: 20,
+    fontFamily: 'Nunito-Regular',
+  },
+  addButton: {
+    backgroundColor: '#3D9CFF',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 14,
+    borderRadius: 12,
+    marginTop: 10,
+  },
+  addButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 8,
+    fontFamily: 'Nunito-Bold',
   },
   detailsContainer: {
     flexDirection: 'row',

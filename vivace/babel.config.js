@@ -3,7 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      'react-native-worklets/plugin',
+      // Env vars
       ['module:react-native-dotenv', {
         moduleName: '@env',
         path: '.env',
@@ -11,7 +11,9 @@ module.exports = function (api) {
         whitelist: null,
         safe: false,
         allowUndefined: true
-      }]
-    ], 
+      }],
+  // Reanimated plugin must be last for Reanimated 3.x
+  'react-native-reanimated/plugin'
+    ],
   };
 };

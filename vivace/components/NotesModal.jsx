@@ -13,6 +13,10 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+// Main blue color and a lighter version for the text input
+const MAIN_BLUE = '#3D9CFF';
+const LIGHT_BLUE = '#8CC5FF'; // Lighter shade of the main blue
+
 const NotesModal = ({ visible, onClose, onSave, initialNote = '' }) => {
   const [note, setNote] = useState('');
   
@@ -56,6 +60,7 @@ const NotesModal = ({ visible, onClose, onSave, initialNote = '' }) => {
                 style={styles.noteInput}
                 multiline
                 placeholder="Write your notes here!"
+                placeholderTextColor="#ffffff99"
                 value={note}
                 onChangeText={setNote}
                 autoFocus
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
     maxWidth: 500,
   },
   modalContent: {
-    backgroundColor: '#3D9CFF',
+    backgroundColor: MAIN_BLUE,
     borderRadius: 15,
     padding: 20,
     elevation: 5,
@@ -117,16 +122,14 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   noteInput: {
-    borderWidth: 1,
-    borderColor: '#ffffff50',
-    borderRadius: 10,
     padding: 15,
     height: 200,
     textAlignVertical: 'top',
     fontSize: 16,
-    backgroundColor: 'white',
+    backgroundColor: LIGHT_BLUE,
     fontFamily: 'Nunito-Regular',
-    color: '#333',
+    color: '#FFFFFF',
+    borderRadius: 15    
   },
   buttonContainer: {
     marginTop: 20,
@@ -144,7 +147,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
   },
   saveButtonText: {
-    color: '#3D9CFF',
+    color: MAIN_BLUE,
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'Nunito-Bold',

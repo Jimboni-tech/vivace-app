@@ -8,6 +8,7 @@ import { useSession } from '../context/SessionContext';
 
 // Import your tab screens
 import HomeScreen from '../screens/Home';
+import StatsScreen from '../screens/Stats';
 import ProfileScreen from '../screens/Profile';
 import PracticeStackNavigator from '../navigation/PracticeStackNavigator';
 
@@ -109,7 +110,7 @@ const BottomBar = ({ onLogout }) => {
       />
       <Tab.Screen
         name="Stats"
-        component={HomeScreen}
+        component={StatsScreen}
       />
       <Tab.Screen
         name="Profile"
